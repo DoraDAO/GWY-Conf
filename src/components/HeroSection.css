@@ -1,0 +1,109 @@
+.hero-section {
+    min-height: 250vh;
+    position: relative;
+    padding-top: 100px;
+}
+
+.hero-content-wrapper {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-headline {
+    font-size: var(--text-7xl);
+    font-weight: var(--font-weight-extrabold);
+    text-align: center;
+    margin-bottom: var(--spacing-4xl);
+    line-height: 1.1;
+}
+
+.hero-cards-container {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--spacing-2xl);
+}
+
+.hero-card {
+    position: absolute;
+    width: 240px;
+    height: 260px;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    transform-origin: center;
+    will-change: transform;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-card-content {
+    color: white;
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+    padding: var(--spacing-md);
+}
+
+.username-pill {
+    position: absolute;
+    z-index: 100;
+    will-change: transform;
+    box-shadow: var(--shadow-md);
+}
+
+.pill-purple {
+    background: var(--color-brand-purple);
+}
+
+.pill-teal {
+    background: var(--color-brand-teal);
+}
+
+.hero-bottom-content {
+    text-align: center;
+    max-width: 700px;
+    will-change: transform, opacity;
+}
+
+.hero-description {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-xl);
+    line-height: 1.8;
+}
+
+.hero-cta-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+}
+
+@media (max-width: 768px) {
+    .hero-headline {
+        font-size: var(--text-5xl);
+    }
+
+    .hero-card {
+        width: 180px;
+        height: 200px;
+    }
+
+    .hero-card-content {
+        font-size: var(--text-xl);
+    }
+
+    .hero-cta-group {
+        flex-direction: column;
+    }
+}

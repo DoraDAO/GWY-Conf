@@ -1,0 +1,121 @@
+.pricing-section {
+    background: var(--color-bg-secondary);
+}
+
+.pricing-container {
+    display: grid;
+    grid-template-columns: 35% 65%;
+    gap: var(--spacing-4xl);
+    align-items: center;
+}
+
+.pricing-icon {
+    font-size: 56px;
+    margin-bottom: var(--spacing-lg);
+}
+
+.pricing-headline {
+    font-size: var(--text-4xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.pricing-description {
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+}
+
+.pricing-tiers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+}
+
+.pricing-card {
+    background: white;
+    border: 1px solid var(--color-text-tertiary);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    position: relative;
+    transition: all 0.3s;
+}
+
+.pricing-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.pricing-card-featured {
+    background: var(--gradient-pink-purple);
+    border: none;
+    color: white;
+    transform: scale(1.05);
+    box-shadow: var(--shadow-lg);
+}
+
+.pricing-card-featured .pricing-tier-label,
+.pricing-card-featured .pricing-note {
+    color: white;
+    opacity: 0.9;
+}
+
+.pricing-badge {
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background: white;
+    color: var(--color-text-primary);
+    padding: 6px 16px;
+    border-radius: var(--radius-pill);
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-semibold);
+}
+
+.pricing-tier-label {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-md);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.pricing-price {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: var(--spacing-md);
+}
+
+.pricing-currency {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-bold);
+}
+
+.pricing-amount {
+    font-size: var(--text-6xl);
+    font-weight: var(--font-weight-extrabold);
+    line-height: 1;
+}
+
+.pricing-period {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-medium);
+}
+
+.pricing-note {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+}
+
+@media (max-width: 1024px) {
+    .pricing-container {
+        grid-template-columns: 1fr;
+    }
+
+    .pricing-tiers {
+        grid-template-columns: 1fr;
+    }
+
+    .pricing-card-featured {
+        transform: scale(1);
+    }
+}

@@ -1,0 +1,103 @@
+.vision-section {
+    background: var(--color-bg-primary);
+}
+
+.vision-container {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    gap: var(--spacing-4xl);
+    align-items: center;
+}
+
+.vision-left {
+    padding-right: var(--spacing-xl);
+}
+
+.vision-icon {
+    font-size: 48px;
+    margin-bottom: var(--spacing-lg);
+}
+
+.vision-headline {
+    font-size: var(--text-5xl);
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.2;
+}
+
+.vision-description {
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--spacing-3xl);
+}
+
+.vision-icons-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-lg);
+    max-width: 300px;
+}
+
+.vision-icon-item {
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vision-card-container {
+    background: var(--color-text-primary);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-lg);
+}
+
+.vision-tabs {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.vision-tab {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    padding: var(--spacing-sm) var(--spacing-md);
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: background 0.3s;
+}
+
+.vision-tab.active {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.vision-create-btn {
+    margin-left: auto;
+    background: white;
+    color: var(--color-text-primary);
+    border: none;
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+}
+
+.vision-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+}
+
+.vision-grid-card {
+    aspect-ratio: 1;
+    border-radius: var(--radius-md);
+}
+
+@media (max-width: 1024px) {
+    .vision-container {
+        grid-template-columns: 1fr;
+    }
+}

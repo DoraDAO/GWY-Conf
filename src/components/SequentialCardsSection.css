@@ -1,0 +1,139 @@
+.sequential-cards-section {
+    background: var(--color-bg-secondary);
+}
+
+.sequential-container {
+    display: grid;
+    grid-template-columns: 35% 65%;
+    gap: var(--spacing-4xl);
+    align-items: center;
+}
+
+.sequential-left {
+    padding-right: var(--spacing-3xl);
+}
+
+.sequential-thumbnail {
+    width: 120px;
+    height: 150px;
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--text-2xl);
+    box-shadow: var(--shadow-md);
+}
+
+.sequential-headline {
+    font-size: var(--text-4xl);
+    margin-bottom: var(--spacing-sm);
+}
+
+.sequential-subtitle {
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-md);
+}
+
+.sequential-description {
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+}
+
+.sequential-right {
+    position: relative;
+    height: 500px;
+}
+
+.sequential-card {
+    position: absolute;
+    width: 240px;
+    height: 300px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: flex-end;
+    padding: var(--spacing-lg);
+}
+
+.sequential-card:nth-child(1) {
+    left: 0;
+    top: 0;
+}
+
+.sequential-card:nth-child(2) {
+    left: 140px;
+    top: 40px;
+}
+
+.sequential-card:nth-child(3) {
+    left: 280px;
+    top: 80px;
+}
+
+.sequential-card:nth-child(4) {
+    left: 420px;
+    top: 120px;
+}
+
+.sequential-card:nth-child(5) {
+    left: 560px;
+    top: 160px;
+}
+
+.sequential-card-label {
+    color: white;
+    font-weight: var(--font-weight-bold);
+    font-size: var(--text-lg);
+}
+
+.username-pill-sequential {
+    position: absolute;
+    top: 20px;
+    right: 100px;
+    z-index: 10;
+}
+
+@media (max-width: 1024px) {
+    .sequential-container {
+        grid-template-columns: 1fr;
+    }
+
+    .sequential-right {
+        height: 350px;
+    }
+
+    .sequential-card {
+        width: 180px;
+        height: 220px;
+    }
+
+    .sequential-card:nth-child(1) {
+        left: 0;
+        top: 0;
+    }
+
+    .sequential-card:nth-child(2) {
+        left: 100px;
+        top: 30px;
+    }
+
+    .sequential-card:nth-child(3) {
+        left: 200px;
+        top: 60px;
+    }
+
+    .sequential-card:nth-child(4) {
+        left: 300px;
+        top: 90px;
+    }
+
+    .sequential-card:nth-child(5) {
+        left: 400px;
+        top: 120px;
+    }
+}
