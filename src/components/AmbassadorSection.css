@@ -1,0 +1,234 @@
+.ambassador-section {
+  min-height: 200vh;
+  position: relative;
+  background: linear-gradient(180deg, #F5F5F5 0%, #FFFFFF 50%, #F5F5F5 100%);
+  overflow: hidden;
+}
+
+.ambassador-content-wrapper {
+  position: relative;
+  padding: var(--spacing-5xl) 0;
+}
+
+.sticky-join-button {
+  position: fixed;
+  top: 50%;
+  right: 40px;
+  transform: translateY(-50%);
+  z-index: var(--z-fixed);
+  will-change: transform, opacity;
+}
+
+.join-now-btn {
+  padding: 18px 36px;
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-semibold);
+  box-shadow: 0 10px 40px rgba(255, 0, 110, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.join-now-btn span {
+  font-size: 24px;
+  display: inline-block;
+}
+
+.ambassador-header {
+  text-align: center;
+  margin-bottom: var(--spacing-4xl);
+  position: relative;
+  z-index: 2;
+}
+
+.ambassador-title {
+  font-size: clamp(48px, 8vw, 80px);
+  font-weight: var(--font-weight-light);
+  line-height: 1.1;
+  margin-bottom: var(--spacing-lg);
+  letter-spacing: -0.03em;
+}
+
+.gradient-text {
+  background: var(--gradient-pink-purple);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+.ambassador-subtitle {
+  font-size: var(--text-xl);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-regular);
+}
+
+.ambassador-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-4xl);
+  position: relative;
+  z-index: 2;
+}
+
+.ambassador-card {
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-2xl);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  will-change: transform;
+  transition: box-shadow 0.3s ease;
+}
+
+.ambassador-card:hover {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.ambassador-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-pink-purple);
+}
+
+.card-icon {
+  font-size: 64px;
+  margin-bottom: var(--spacing-lg);
+  display: inline-block;
+}
+
+.card-title {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-text-primary);
+}
+
+.card-desc {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.floating-icons {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.float-icon {
+  position: absolute;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1));
+}
+
+.icon-1 {
+  top: 15%;
+  left: 10%;
+}
+
+.icon-2 {
+  top: 40%;
+  right: 8%;
+}
+
+.icon-3 {
+  bottom: 25%;
+  left: 15%;
+}
+
+.float-emoji {
+  position: absolute;
+  font-size: 48px;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1));
+}
+
+.emoji-1 {
+  top: 20%;
+  right: 15%;
+}
+
+.emoji-2 {
+  bottom: 30%;
+  right: 20%;
+}
+
+.emoji-3 {
+  top: 50%;
+  left: 8%;
+}
+
+.ambassador-cta {
+  text-align: center;
+  padding: var(--spacing-3xl);
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  z-index: 2;
+}
+
+.ambassador-cta p {
+  font-size: var(--text-xl);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-lg);
+  font-weight: var(--font-weight-medium);
+}
+
+@media (max-width: 1024px) {
+  .sticky-join-button {
+    right: 20px;
+  }
+
+  .ambassador-cards-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--spacing-lg);
+  }
+}
+
+@media (max-width: 768px) {
+  .sticky-join-button {
+    position: fixed;
+    bottom: 20px;
+    right: 50%;
+    top: auto;
+    transform: translateX(50%);
+  }
+
+  .join-now-btn {
+    padding: 14px 28px;
+    font-size: var(--text-base);
+  }
+
+  .ambassador-title {
+    font-size: var(--text-4xl);
+  }
+
+  .ambassador-subtitle {
+    font-size: var(--text-lg);
+  }
+
+  .ambassador-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .float-icon,
+  .float-emoji {
+    display: none;
+  }
+
+  .ambassador-cta {
+    padding: var(--spacing-xl);
+  }
+}

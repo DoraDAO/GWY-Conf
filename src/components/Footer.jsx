@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { Twitter, Instagram, Heart, Youtube, Calendar, Mail, Github } from 'lucide-react';
 import './Footer.css';
 
 const Footer = () => {
@@ -16,9 +17,12 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { name: 'Twitter', icon: '𝕏' },
-    { name: 'Instagram', icon: '📷' },
-    { name: 'LinkedIn', icon: '💼' }
+    { name: 'YouTube', icon: <Youtube size={20} />, url: 'https://youtube.com/@connectdoradao' },
+    { name: 'Instagram', icon: <Instagram size={20} />, url: 'https://instagram.com/connectdoradao' },
+    { name: 'Twitter', icon: <Twitter size={20} />, url: 'https://x.com/connectdoradao' },
+    { name: 'GitHub', icon: <Github size={20} />, url: 'https://github.com/connectdoradao' },
+    { name: 'Luma', icon: <Calendar size={20} />, url: 'https://lu.ma/connectdoradao' },
+    { name: 'Substack', icon: <Mail size={20} />, url: 'https://doradao.substack.com' }
   ];
 
   return (
@@ -32,9 +36,9 @@ const Footer = () => {
             transition={{ duration: 0.6 }}
           >
             <h3 className="footer-logo">Girls Who Yap</h3>
-            <p className="footer-tagline">Powered by Doradao</p>
+            <p className="footer-tagline">Powered by DoraDAO</p>
             <p className="footer-description">
-              A women-centric conference celebrating culture, career & creativity.
+              A women centric conference celebrating culture, career & creativity
             </p>
           </motion.div>
 
@@ -81,7 +85,9 @@ const Footer = () => {
               {socialLinks.map((social, index) => (
                 <motion.a
                   key={social.name}
-                  href={`#${social.name.toLowerCase()}`}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="footer-social-link"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
@@ -103,7 +109,7 @@ const Footer = () => {
           transition={{ duration: 0.6, delay: 0.5 }}
         >
           <p className="footer-copyright">
-            © 2026 Girls Who Yap • Built with ❤️ by Doradao
+            © 2026 Girls Who Yap • Built with <Heart size={14} fill="currentColor" /> by DoraDAO
           </p>
           <div className="footer-legal">
             <a href="#privacy" className="footer-legal-link">Privacy Policy</a>

@@ -1,24 +1,21 @@
-import React, { useRef } from 'react';
+import { useRef, Fragment } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import './MarketplaceSection.css';
 
 const MarketplaceSection = () => {
   const sectionRef = useRef(null);
   
-  // Track scroll progress for card explosion animation
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"]
   });
 
-  // Smooth spring for animations
   const scrollProgress = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001
   });
 
-  // Cards data with positions for the "exploded" layout
   const cards = [
     { 
       id: 1, 
@@ -79,38 +76,67 @@ const MarketplaceSection = () => {
 
   return (
     <section ref={sectionRef} className="marketplace-section section">
-      <div className="container marketplace-container">
-        {/* Left Content */}
+      <motion.div 
+        className="container marketplace-container"
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.9, ease: [0.4, 0, 0.2, 1] }}
+      >
+        {/* left */}
         <motion.div 
           className="marketplace-left"
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
         >
-          <p className="marketplace-eyebrow">
+          <motion.p 
+            className="marketplace-eyebrow"
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
+          >
             E-COMMERCE
-          </p>
-          <h2 className="marketplace-headline">
+          </motion.p>
+          <motion.h2 
+            className="marketplace-headline"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
+          >
             Showcase, Sell,<br />
             <span className="text-accent">& acquire arts to</span><br />
             our marketplace.
-          </h2>
-          <p className="marketplace-description">
+          </motion.h2>
+          <motion.p 
+            className="marketplace-description"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
+          >
             Dynamic community where artists and buyers seamlessly merge. ArtFusion 
             brings together creators and enthusiasts to share creativity.
-          </p>
-          <div className="marketplace-cta-group">
+          </motion.p>
+          <motion.div 
+            className="marketplace-cta-group"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.5, ease: [0.4, 0, 0.2, 1] }}
+          >
             <a href="#join" className="btn btn-primary">
               Join Now
             </a>
-          </div>
+          </motion.div>
         </motion.div>
 
-        {/* Right - Exploding Cards */}
+        {/* right */}
         <div className="marketplace-cards-wrapper">
           {cards.map((card, index) => {
-            // Animate from center to exploded position
             const cardX = useTransform(
               scrollProgress,
               [0.2, 0.5],
@@ -133,7 +159,7 @@ const MarketplaceSection = () => {
             );
 
             return (
-              <React.Fragment key={card.id}>
+              <Fragment key={card.id}>
                 <motion.div
                   className="marketplace-card-explode"
                   style={{
@@ -144,14 +170,17 @@ const MarketplaceSection = () => {
                     background: card.color,
                     zIndex: card.zIndex
                   }}
+                  whileHover={{ scale: 1.05, rotate: card.rotate + 2 }}
                 >
-                  <div className="card-placeholder">
-                    {/* Placeholder for actual images */}
+                  <motion.div 
+                    className="card-placeholder"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.3 + (index * 0.1) }}
+                  >
                     <div className="card-art-content"></div>
-                  </div>
+                  </motion.div>
                 </motion.div>
-
-                {/* Username tags */}
                 {card.username && (
                   <motion.div
                     className="card-username-tag"
@@ -161,15 +190,18 @@ const MarketplaceSection = () => {
                       opacity: cardOpacity,
                       zIndex: card.zIndex + 10
                     }}
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 0.4, delay: 0.5 + (index * 0.1) }}
                   >
                     {card.username}
                   </motion.div>
                 )}
-              </React.Fragment>
+              </Fragment>
             );
           })}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

@@ -1,29 +1,21 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import './AvatarGridSection.css';
 
 const AvatarGridSection = () => {
   const sectionRef = useRef(null);
-  
-  // Track scroll progress for this section
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"]
   });
-
-  // Smooth spring animation for scroll progress
   const scrollProgress = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001
   });
-
-  // Text reveal animations - gentle upward movement + fade + scale
   const textY = useTransform(scrollProgress, [0.2, 0.5], [60, 0]);
   const textOpacity = useTransform(scrollProgress, [0.2, 0.5], [0, 1]);
   const textScale = useTransform(scrollProgress, [0.2, 0.5], [0.96, 1]);
-
-  // Scattered avatar positions - organic placement like reference image
   const topAvatars = [
     { id: 1, left: '5%', top: '10%', color: 'hsl(140, 60%, 50%)', delay: 0 },
     { id: 2, left: '15%', top: '25%', color: 'hsl(280, 65%, 55%)', delay: 0.5 },
@@ -52,7 +44,6 @@ const AvatarGridSection = () => {
   return (
     <section ref={sectionRef} className="avatar-grid-section section">
       <div className="avatar-scattered-container">
-        {/* Top scattered avatars */}
         {topAvatars.map((avatar, index) => (
           <motion.div
             key={avatar.id}
@@ -79,8 +70,6 @@ const AvatarGridSection = () => {
             viewport={{ once: true }}
           />
         ))}
-
-        {/* Bottom scattered avatars */}
         {bottomAvatars.map((avatar, index) => (
           <motion.div
             key={avatar.id}
@@ -107,8 +96,6 @@ const AvatarGridSection = () => {
             viewport={{ once: true }}
           />
         ))}
-
-        {/* Center Headline with Scroll Reveal */}
         <motion.div 
           className="avatar-headline-wrapper"
           style={{

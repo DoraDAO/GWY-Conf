@@ -11,7 +11,7 @@ const PartnersSection = () => {
     'Partner 4', 'Partner 5', 'Partner 6'
   ];
 
-  // Duplicate array to make seamless loop
+  // duplicate array to make seamless loop
   const loopedPartners = [...partners, ...partners];
 
   return (
@@ -31,7 +31,6 @@ const PartnersSection = () => {
           </p>
         </motion.div>
 
-        {/* Marquee wrapper */}
         <div className="partners-marquee">
           <motion.div
             className="partners-marquee-track"

@@ -9,7 +9,6 @@ const HeroSection = () => {
     offset: ["start start", "end start"]
   });
 
-  // Card animations based on scroll - smaller spread for compact layout
   const card1Scale = useTransform(scrollYProgress, [0, 0.2, 0.4], [1, 0.95, 0.9]);
   const card1X = useTransform(scrollYProgress, [0, 0.2, 0.4], [0, -200, -240]);
   const card1Rotate = useTransform(scrollYProgress, [0, 0.2], [2, -8]);
@@ -29,11 +28,9 @@ const HeroSection = () => {
   const card6X = useTransform(scrollYProgress, [0, 0.2, 0.4], [0, 240, 280]);
   const card6Rotate = useTransform(scrollYProgress, [0, 0.2], [0, 8]);
 
-  // Text visible from start - no fade in needed
   const textOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 1]);
   const textY = useTransform(scrollYProgress, [0, 0.1], [0, 0]);
 
-  // Content reveal (final frame)
   const contentOpacity = useTransform(scrollYProgress, [0.4, 0.5], [0, 1]);
   const contentX = useTransform(scrollYProgress, [0.4, 0.5], [-60, 0]);
 
@@ -49,21 +46,24 @@ const HeroSection = () => {
   return (
     <section ref={sectionRef} className="hero-section">
       <div className="hero-content-wrapper">
-        {/* Headline */}
         <motion.h1 
           className="hero-headline"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
           style={{ opacity: textOpacity, y: textY }}
         >
-          A place to display your<br />
-          masterpiece.
+          A Community Led Space<br />
+          Shaped By People.
         </motion.h1>
-
-        {/* Card Stack */}
         <div className="hero-cards-container">
           {cards.map((card) => (
             <motion.div
               key={card.id}
               className="hero-card"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
               style={{
                 x: card.x,
                 rotate: card.rotate,
@@ -71,44 +71,74 @@ const HeroSection = () => {
                 background: card.color,
               }}
             >
-              <div className="hero-card-content">
+              <motion.div 
+                className="hero-card-content"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+              >
                 {card.label}
-              </div>
+              </motion.div>
             </motion.div>
           ))}
-          
-          {/* Username Pills */}
           <motion.div
             className="pill pill-purple username-pill"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
             style={{ opacity: textOpacity, x: card2X, y: -180 }}
           >
             @doradao
           </motion.div>
           <motion.div
             className="pill pill-teal username-pill"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.7, ease: "easeOut" }}
             style={{ opacity: textOpacity, x: card6X, y: -160 }}
           >
             @speaker
           </motion.div>
         </div>
-
-        {/* Content Reveal Section */}
         <motion.div 
           className="hero-bottom-content"
           style={{ opacity: contentOpacity, x: contentX }}
         >
-          <p className="hero-description">
-            Artists can display their masterpieces, and buyers can discover and<br />
-            invest in unique creative works from talented creators.
-          </p>
-          <div className="hero-cta-group">
-            <a href="#register" className="btn btn-primary">
-              Join for $9.99/m
-            </a>
-            <a href="#about" className="btn btn-secondary">
+          <motion.p 
+            className="hero-description"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            What started as conversations, late night ideas  and a community that believed in showing up, is now evolving into a space where voices meet opportunity, stories turn into action and women shape what’s next.
+          </motion.p>
+          <motion.div 
+            className="hero-cta-group"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          >
+            <motion.a 
+              href="#register" 
+              className="btn btn-primary"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Get Started
+            </motion.a>
+            <motion.a 
+              href="https://doradao.substack.com/p/girls-who-yap-conf-launch" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-secondary"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
               Read more
-            </a>
-          </div>
+            </motion.a>
+          </motion.div>
         </motion.div>
       </div>
     </section>

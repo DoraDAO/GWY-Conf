@@ -47,12 +47,14 @@
   --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.15);
 
   /* Typography */
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  --font-sans: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Bricolage Grotesque', sans-serif;
+  --font-weight-light: 300;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  --font-weight-extrabold: 800;
+  --font-weight-bold: 600;
+  --font-weight-extrabold: 600;
 
   /* Font Sizes */
   --text-xs: 12px;
@@ -91,15 +93,37 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
 body {
   font-family: var(--font-sans);
   font-size: var(--text-base);
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-weight-light);
   color: var(--color-text-primary);
   background-color: var(--color-bg-primary);
   line-height: 1.6;
   overflow-x: hidden;
 }
+
+/* Remove global transitions - let framer motion handle it */
 
 #root {
   min-height: 100vh;
@@ -112,9 +136,11 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: var(--font-weight-bold);
-  line-height: 1.2;
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-light);
+  line-height: 1.1;
   margin-bottom: var(--spacing-md);
+  letter-spacing: -0.02em;
 }
 
 h1 {
@@ -161,46 +187,60 @@ img {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-sm) var(--spacing-xl);
+  gap: 8px;
+  padding: 14px 32px;
+  font-family: var(--font-display);
   font-size: var(--text-base);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-regular);
   border: none;
   border-radius: var(--radius-pill);
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
   white-space: nowrap;
+  letter-spacing: -0.01em;
+  position: relative;
+  z-index: 10;
 }
 
 .btn-primary {
   background: var(--color-text-primary);
   color: var(--color-bg-secondary);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
 }
 
 .btn-gradient {
   background: var(--gradient-pink-purple);
   color: white;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 2px 8px rgba(255, 0, 110, 0.2);
 }
 
 .btn-gradient:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 4px 16px rgba(255, 0, 110, 0.3);
+}
+
+.btn-gradient:active {
+  transform: translateY(0);
 }
 
 .btn-secondary {
-  background: transparent;
+  background: var(--color-bg-secondary);
   color: var(--color-text-primary);
-  border: 1px solid var(--color-text-tertiary);
+  border: 1.5px solid var(--color-text-tertiary);
 }
 
 .btn-secondary:hover {
   border-color: var(--color-text-primary);
+  transform: translateY(-2px);
 }
 
 /* Card Styles */

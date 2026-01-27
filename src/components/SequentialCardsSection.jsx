@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import './SequentialCardsSection.css';
 
@@ -16,22 +16,53 @@ const SequentialCardsSection = () => {
 
   return (
     <section ref={sectionRef} className="sequential-cards-section section">
-      <div className="container sequential-container">
+      <motion.div 
+        className="container sequential-container"
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+      >
         <motion.div 
           className="sequential-left"
           initial={{ opacity: 0, x: -60 }}
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -60 }}
           transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
         >
-          <div className="sequential-thumbnail" style={{ background: 'var(--gradient-pink-purple)' }}>
+          <motion.div 
+            className="sequential-thumbnail" 
+            style={{ background: 'var(--gradient-pink-purple)' }}
+            initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+            animate={isInView ? { opacity: 1, scale: 1, rotate: 0 } : { opacity: 0, scale: 0.8, rotate: -5 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
+          >
             <span style={{ color: 'white', fontWeight: 'bold' }}>GWY</span>
-          </div>
-          <h2 className="sequential-headline">Where Women Meet Opportunity</h2>
-          <p className="sequential-subtitle">CULTURE & CAREER</p>
-          <p className="sequential-description">
+          </motion.div>
+          <motion.h2 
+            className="sequential-headline"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
+          >
+            Where Women Meet Opportunity
+          </motion.h2>
+          <motion.p 
+            className="sequential-subtitle"
+            initial={{ opacity: 0, y: 15 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+            transition={{ duration: 0.5, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
+          >
+            CULTURE & CAREER
+          </motion.p>
+          <motion.p 
+            className="sequential-description"
+            initial={{ opacity: 0, y: 15 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+            transition={{ duration: 0.5, delay: 0.5, ease: [0.4, 0, 0.2, 1] }}
+          >
             Allowing speakers to showcase their voice and attendees to find 
             unique, inspiring sessions.
-          </p>
+          </motion.p>
         </motion.div>
 
         <div className="sequential-right">
@@ -41,26 +72,35 @@ const SequentialCardsSection = () => {
               className="sequential-card"
               style={{ 
                 background: card.color,
-                rotate: (index - 2) * 3,
                 zIndex: index
               }}
-              initial={{ opacity: 0, scale: 0.8, y: 60 }}
+              initial={{ opacity: 0, scale: 0.8, y: 60, rotate: (index - 2) * 5 }}
               animate={isInView ? { 
                 opacity: 1, 
                 scale: 1, 
-                y: 0 
+                y: 0,
+                rotate: (index - 2) * 3
               } : { 
                 opacity: 0, 
                 scale: 0.8, 
-                y: 60 
+                y: 60,
+                rotate: (index - 2) * 5
               }}
               transition={{ 
                 duration: 0.6, 
                 delay: 0.2 + (index * 0.12),
                 ease: [0.4, 0, 0.2, 1]
               }}
+              whileHover={{ scale: 1.05, rotate: (index - 2) * 3 + 2, y: -5 }}
             >
-              <div className="sequential-card-label">{card.label}</div>
+              <motion.div 
+                className="sequential-card-label"
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                transition={{ duration: 0.4, delay: 0.4 + (index * 0.12) }}
+              >
+                {card.label}
+              </motion.div>
             </motion.div>
           ))}
           <motion.div
@@ -72,7 +112,7 @@ const SequentialCardsSection = () => {
             @gwyspeaker
           </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

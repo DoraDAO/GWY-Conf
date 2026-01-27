@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import './EditorialSection.css';
 
@@ -33,14 +33,27 @@ const EditorialSection = () => {
 
   return (
     <section ref={sectionRef} className="editorial-section section">
-      <div className="container editorial-container">
+      <motion.div 
+        className="container editorial-container"
+        initial={{ opacity: 0, rotate: -1 }}
+        whileInView={{ opacity: 1, rotate: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+      >
         <motion.div 
           className="editorial-text"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          <p className="editorial-eyebrow">CLASS BY GIRLS WHO YAP</p>
+          <motion.p 
+            className="editorial-eyebrow"
+            initial={{ opacity: 0, y: -10 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
+            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+          >
+            CLASS BY GIRLS WHO YAP
+          </motion.p>
           <h2 className="editorial-headline">
             {words.map((word, index) => (
               <motion.span
@@ -60,15 +73,29 @@ const EditorialSection = () => {
         
         <motion.div 
           className="editorial-image-wrapper"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0.95, rotate: -2 }}
+          animate={isInView ? { opacity: 1, scale: 1, rotate: 0 } : { opacity: 0, scale: 0.95, rotate: -2 }}
           transition={{ duration: 0.8, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
+          whileHover={{ scale: 1.05, rotate: 2, y: -10 }}
         >
-          <div className="editorial-image" style={{ background: 'linear-gradient(135deg, #FF006E 0%, #9333EA 100%)' }}>
-            <div className="editorial-placeholder-text">Conference Image</div>
-          </div>
+          <motion.div 
+            className="editorial-image" 
+            style={{ background: 'linear-gradient(135deg, #FF006E 0%, #9333EA 100%)' }}
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
+            <motion.div 
+              className="editorial-placeholder-text"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
+            >
+              Conference Image
+            </motion.div>
+          </motion.div>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 };
