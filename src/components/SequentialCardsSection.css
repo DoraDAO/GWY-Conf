@@ -1,5 +1,7 @@
 .sequential-cards-section {
-    background: var(--color-bg-secondary);
+    background: #F5A962;
+    perspective: 1500px;
+    transform-style: preserve-3d;
 }
 
 .sequential-container {
@@ -7,6 +9,7 @@
     grid-template-columns: 35% 65%;
     gap: var(--spacing-4xl);
     align-items: center;
+    transform-style: preserve-3d;
 }
 
 .sequential-left {
@@ -47,6 +50,8 @@
 .sequential-right {
     position: relative;
     height: 500px;
+    perspective: 1200px;
+    transform-style: preserve-3d;
 }
 
 .sequential-card {
@@ -54,10 +59,18 @@
     width: 240px;
     height: 300px;
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
+    box-shadow: none;
     display: flex;
     align-items: flex-end;
     padding: var(--spacing-lg);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    will-change: transform;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sequential-card:hover {
+    transform: scale(1.02);
 }
 
 .sequential-card:nth-child(1) {

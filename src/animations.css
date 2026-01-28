@@ -1,0 +1,183 @@
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  perspective: 2000px;
+  transform-style: preserve-3d;
+}
+
+#root {
+  transform-style: preserve-3d;
+}
+
+.app {
+  transform-style: preserve-3d;
+}
+
+main {
+  transform-style: preserve-3d;
+}
+
+.section {
+  transform-style: preserve-3d;
+  perspective: 1500px;
+}
+
+.hero-card,
+.floating-card,
+.sequential-card,
+.vision-grid-card,
+.btn {
+  will-change: transform, opacity;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+a, button, .card, .pill {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.hero-card:hover,
+.floating-card:hover,
+.sequential-card:hover {
+  transform: translateY(-12px) translateZ(50px) scale(1.03);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.gsap-fade-in {
+  opacity: 0;
+  transform: translateY(60px) translateZ(-50px);
+}
+
+.gsap-scale-in {
+  opacity: 0;
+  transform: scale(0.9) translateZ(-30px);
+}
+
+.gsap-slide-left {
+  opacity: 0;
+  transform: translateX(-80px) rotateY(-15deg);
+}
+
+.gsap-slide-right {
+  opacity: 0;
+  transform: translateX(80px) rotateY(15deg);
+}
+
+.parallax-slow {
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+.parallax-fast {
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(40px) translateZ(-20px);
+  transform-style: preserve-3d;
+}
+
+.magnetic-btn {
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.card-stack {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+.card-stack > * {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-3d:hover {
+  transform: rotateY(10deg) rotateX(5deg) translateZ(30px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    transform: none !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    will-change: transform;
+  }
+}
+
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-brand-pink);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.loading {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loaded {
+  opacity: 1;
+  pointer-events: all;
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-card,
+.floating-card,
+.sequential-card,
+.vision-grid-card,
+.avatar-item-scattered,
+.ambassador-card,
+.card,
+.pill {
+  box-shadow: none !important;
+}

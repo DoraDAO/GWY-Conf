@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
 import Lenis from '@studio-freight/lenis';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import CustomCursor from './components/CustomCursor';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import HeroTransitionSection from './components/HeroTransitionSection';
@@ -15,6 +18,8 @@ import MarqueeSection from './components/MarqueeSection';
 import MarketplaceSection from './components/MarketplaceSection';
 import Footer from './components/Footer';
 
+gsap.registerPlugin(ScrollTrigger);
+
 function App() {
   useEffect(() => {
     const lenis = new Lenis({
@@ -29,19 +34,22 @@ function App() {
       infinite: false,
     });
 
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
 
-    requestAnimationFrame(raf);
+    gsap.ticker.lagSmoothing(0);
+
     return () => {
       lenis.destroy();
+      gsap.ticker.remove(lenis.raf);
     };
   }, []);
 
   return (
     <div className="app">
+      <CustomCursor />
       <Navbar />
       <main>
         <HeroSection />
