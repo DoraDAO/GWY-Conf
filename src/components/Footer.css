@@ -15,8 +15,6 @@
     margin-bottom: var(--spacing-4xl);
 }
 
-.footer-brand {}
-
 .footer-logo {
     font-size: var(--text-2xl);
     font-weight: var(--font-weight-bold);

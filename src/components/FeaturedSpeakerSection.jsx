@@ -1,5 +1,6 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { Heart } from 'lucide-react';
 import './FeaturedSpeakerSection.css';
 
 const FeaturedSpeakerSection = () => {
@@ -13,7 +14,13 @@ const FeaturedSpeakerSection = () => {
 
   return (
     <section ref={sectionRef} className="featured-speaker-section section">
-      <div className="container">
+      <motion.div 
+        className="container"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+      >
         <div className="featured-grid-background">
           {avatars.map((avatar, index) => (
             <motion.div
@@ -33,27 +40,49 @@ const FeaturedSpeakerSection = () => {
 
         <motion.div
           className="featured-center-card"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          initial={{ opacity: 0, scale: 0.8, rotate: -3 }}
+          animate={isInView ? { opacity: 1, scale: 1, rotate: 0 } : { opacity: 0, scale: 0.8, rotate: -3 }}
+          transition={{ duration: 0.6, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
+          whileHover={{ scale: 1.02, rotate: 1 }}
         >
-          <div className="featured-image" style={{ background: 'var(--gradient-pink-purple)' }}>
+          <motion.div 
+            className="featured-image" 
+            style={{ background: 'var(--gradient-pink-purple)' }}
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
             <div style={{ color: 'white', fontWeight: 'bold' }}>Featured Speaker</div>
-          </div>
+          </motion.div>
           <motion.button 
             className="featured-like-btn"
+            initial={{ opacity: 0, scale: 0 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
+            transition={{ duration: 0.4, delay: 0.5, ease: [0.4, 0, 0.2, 1] }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >
-            ❤️ Save
+            <Heart size={18} fill="currentColor" /> Save
           </motion.button>
-          <div className="pill pill-orange featured-username">@speaker</div>
-          <div className="featured-speaker-info">
+          <motion.div 
+            className="pill pill-orange featured-username"
+            initial={{ opacity: 0, x: -20 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+            transition={{ duration: 0.4, delay: 0.6, ease: [0.4, 0, 0.2, 1] }}
+          >
+            @speaker
+          </motion.div>
+          <motion.div 
+            className="featured-speaker-info"
+            initial={{ opacity: 0, y: 10 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+            transition={{ duration: 0.5, delay: 0.7, ease: [0.4, 0, 0.2, 1] }}
+          >
             <p className="featured-speaker-name">Maria Rodriguez</p>
             <p className="featured-speaker-from">from Girls Who Yap</p>
-          </div>
+          </motion.div>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 };

@@ -1,13 +1,32 @@
-import React from 'react';
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
+import { Mic, Trophy, Users, Calendar, Star, Handshake, Briefcase, Palette } from 'lucide-react';
 import './MarqueeSection.css';
 
 const MarqueeSection = () => {
-  const marqueeText = "Culture • Career • Creativity • Powered by Doradao • Women Who Build • Network & Grow • ";
-  const icons = ['🎤', '🏆', '👥', '📅', '⭐', '🤝', '💼', '🎨'];
+  const sectionRef = useRef(null);
+  
+  const marqueeText = "Culture • Career • Creativity • Powered by DoraDAO • Women Who Build • Network & Grow • ";
+  const iconComponents = [
+    <Mic size={20} />, 
+    <Trophy size={20} />, 
+    <Users size={20} />, 
+    <Calendar size={20} />, 
+    <Star size={20} />, 
+    <Handshake size={20} />, 
+    <Briefcase size={20} />, 
+    <Palette size={20} />
+  ];
 
   return (
-    <section className="marquee-section">
+    <motion.section 
+      ref={sectionRef}
+      className="marquee-section"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.8 }}
+    >
       <div className="marquee-background">
         <div className="marquee-content">
           <motion.div
@@ -24,7 +43,7 @@ const MarqueeSection = () => {
         </div>
 
         <div className="floating-icons-container">
-          {icons.map((icon, index) => (
+          {iconComponents.map((icon, index) => (
             <motion.div
               key={index}
               className="floating-icon-marquee"
@@ -48,7 +67,7 @@ const MarqueeSection = () => {
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

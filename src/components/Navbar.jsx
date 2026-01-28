@@ -14,16 +14,16 @@ const Navbar = () => {
       transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
     >
       <div className="container navbar-container">
-        {/* Logo */}
         <a href="#home" className="navbar-logo">
-          Girls Who Yap
+          <img 
+            src="/images/logo.png" 
+            alt="logo" 
+            className="navbar-logo-img"
+          />
+          <span className="navbar-logo-text">Girls Who Yap</span>
         </a>
-
-        {/* Menu Items */}
         <div className="navbar-menu">
           <a href="#about" className="navbar-link">About</a>
-          
-          {/* Program Dropdown */}
           <div 
             className="navbar-dropdown"
             onMouseEnter={() => setProgramOpen(true)}
@@ -47,8 +47,6 @@ const Navbar = () => {
               )}
             </AnimatePresence>
           </div>
-
-          {/* Ambassador Dropdown */}
           <div 
             className="navbar-dropdown"
             onMouseEnter={() => setAmbassadorOpen(true)}
@@ -77,8 +75,6 @@ const Navbar = () => {
           <a href="#media" className="navbar-link">Media</a>
           <a href="#sponsors" className="navbar-link">Sponsors</a>
           <a href="#institutions" className="navbar-link">Institutions</a>
-
-          {/* Register CTA */}
           <a href="#register" className="btn btn-primary navbar-cta">
             Register
           </a>
