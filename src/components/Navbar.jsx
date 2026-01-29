@@ -1,18 +1,48 @@
-import React, { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Navbar.css';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Navbar = () => {
   const [programOpen, setProgramOpen] = useState(false);
   const [ambassadorOpen, setAmbassadorOpen] = useState(false);
+  const navRef = useRef(null);
+
+  useEffect(() => {
+    const nav = navRef.current;
+    if (!nav) return;
+
+    let lastScroll = 0;
+    
+    ScrollTrigger.create({
+      start: 'top -80',
+      end: 99999,
+      onUpdate: (self) => {
+        const currentScroll = self.scroll();
+        if (currentScroll > lastScroll && currentScroll > 100) {
+          gsap.to(nav, { y: -100, duration: 0.3, ease: 'power2.out' });
+        } else {
+          gsap.to(nav, { y: 0, duration: 0.3, ease: 'power2.out' });
+        }
+        lastScroll = currentScroll;
+      }
+    });
+
+    gsap.fromTo(nav, 
+      { y: -100, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.2 }
+    );
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
 
   return (
-    <motion.nav 
-      className="navbar"
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-    >
+    <nav ref={navRef} className="navbar">
       <div className="container navbar-container">
         <a href="#home" className="navbar-logo">
           <img 
@@ -80,7 +110,7 @@ const Navbar = () => {
           </a>
         </div>
       </div>
-    </motion.nav>
+    </nav>
   );
 };
 

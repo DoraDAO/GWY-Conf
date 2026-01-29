@@ -4,7 +4,7 @@
     left: 0;
     right: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(245, 169, 98, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     z-index: var(--z-sticky);
@@ -53,14 +53,31 @@
     font-size: var(--text-sm);
     font-weight: var(--font-weight-medium);
     color: var(--color-text-secondary);
-    transition: color 0.3s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     background: none;
     border: none;
     cursor: pointer;
+    position: relative;
+}
+
+.navbar-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-brand-pink);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navbar-link:hover {
     color: var(--color-brand-pink);
+    transform: translateY(-2px);
+}
+
+.navbar-link:hover::after {
+    width: 100%;
 }
 
 .navbar-dropdown {
