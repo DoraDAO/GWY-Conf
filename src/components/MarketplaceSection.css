@@ -2,143 +2,184 @@
     background: var(--color-bg-secondary, #F5F5F5);
     padding: var(--spacing-6xl) 0;
     min-height: 100vh;
-    position: relative;
-}
-
-.marketplace-container {
-    display: grid;
-    grid-template-columns: 40% 60%;
-    gap: var(--spacing-4xl);
-    align-items: center;
-    position: relative;
-}
-
-.marketplace-left {
-    z-index: 10;
-}
-
-.marketplace-eyebrow {
-    font-size: var(--text-xs);
-    font-weight: var(--font-weight-semibold);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: var(--spacing-lg);
-    color: var(--color-text-secondary, #666);
-}
-
-.marketplace-headline {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 600;
-    margin-bottom: var(--spacing-xl);
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    color: var(--color-text-primary, #1A1A1A);
-}
-
-.text-accent {
-    color: #9B2C2C;
-}
-
-.marketplace-description {
-    color: var(--color-text-secondary, #4A5568);
-    line-height: 1.7;
-    font-size: var(--text-base);
-    margin-bottom: var(--spacing-2xl);
-    max-width: 500px;
-}
-
-.marketplace-cta-group {
     display: flex;
-    gap: var(--spacing-md);
+    align-items: center;
+    justify-content: center;
 }
 
-.marketplace-cards-wrapper {
+.marketplace-cards-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-2xl);
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 var(--spacing-2xl);
+}
+
+.marketplace-feature-card {
     position: relative;
-    height: 450px;
-    width: 100%;
-}
-
-.marketplace-card-explode {
-    position: absolute;
-    width: 220px;
-    height: 260px;
-    border-radius: 20px;
-    box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.15),
-        0 4px 10px rgba(0, 0, 0, 0.1);
-    will-change: transform;
-    top: 50%;
-    left: 0;
-    transform-origin: center;
-}
-
-.card-placeholder {
-    width: 100%;
-    height: 100%;
-    border-radius: 20px;
+    border-radius: 24px;
+    padding: var(--spacing-3xl);
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
-    position: relative;
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.1),
+        0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
 }
 
-.card-art-content {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%);
+.marketplace-feature-card:hover {
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.15),
+        0 8px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
 }
 
-.card-username-tag {
+/* Icon */
+.card-icon {
     position: absolute;
-    background: var(--color-brand-purple, #9333EA);
+    top: var(--spacing-xl);
+    left: var(--spacing-xl);
+    width: 32px;
+    height: 32px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    z-index: 2;
+    backdrop-filter: blur(10px);
+}
+
+/* Content */
+.card-content {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.card-title {
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-md);
+    letter-spacing: -0.02em;
+}
+
+.card-description {
+    font-size: var(--text-sm);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-xl);
+    opacity: 0.9;
+    max-width: 90%;
+}
+
+.card-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-sm) var(--spacing-xl);
+    background: rgba(0, 0, 0, 0.8);
     color: white;
-    padding: var(--spacing-xs) var(--spacing-md);
-    border-radius: 20px;
+    border-radius: 50px;
     font-size: var(--text-sm);
     font-weight: 500;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    white-space: nowrap;
-    will-change: transform;
-    top: 50%;
-    left: 0;
+    text-decoration: none;
+    width: fit-content;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
 }
 
+.marketplace-feature-card:first-child .card-button {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+}
+
+.marketplace-feature-card:last-child .card-button {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+}
+
+.card-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Decorative Images */
+.card-image {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.card-image-person {
+    top: 0;
+    right: 0;
+    width: 60%;
+    height: 70%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 100%);
+    border-radius: 0 24px 0 50%;
+}
+
+.card-image-flower {
+    top: -10%;
+    right: -5%;
+    width: 70%;
+    height: 80%;
+    background: radial-gradient(ellipse at top right,
+            rgba(255, 182, 193, 0.3) 0%,
+            rgba(255, 218, 185, 0.2) 30%,
+            rgba(221, 160, 221, 0.15) 60%,
+            transparent 100%);
+    border-radius: 50%;
+}
+
+/* Responsive */
 @media (max-width: 1024px) {
-    .marketplace-container {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-3xl);
+    .marketplace-cards-container {
+        gap: var(--spacing-xl);
     }
 
-    .marketplace-cards-wrapper {
-        height: 350px;
+    .marketplace-feature-card {
+        min-height: 350px;
+        padding: var(--spacing-2xl);
     }
 
-    .marketplace-card-explode {
-        width: 180px;
-        height: 220px;
+    .card-title {
+        font-size: clamp(1.75rem, 3vw, 2.25rem);
     }
 }
 
 @media (max-width: 768px) {
-    .marketplace-section {
-        padding: var(--spacing-4xl) 0;
+    .marketplace-cards-container {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
     }
 
-    .marketplace-headline {
-        font-size: var(--text-4xl);
+    .marketplace-feature-card {
+        min-height: 320px;
+        padding: var(--spacing-xl);
     }
 
-    .marketplace-cards-wrapper {
-        height: 300px;
-        transform: scale(0.8);
-        margin-left: -40px;
+    .card-title {
+        font-size: clamp(1.5rem, 2.5vw, 2rem);
     }
 
-    .marketplace-card-explode {
-        width: 150px;
-        height: 180px;
-    }
-
-    .card-username-tag {
+    .card-description {
+        max-width: 100%;
         font-size: var(--text-xs);
-        padding: 6px 12px;
+    }
+
+    .card-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
     }
 }
