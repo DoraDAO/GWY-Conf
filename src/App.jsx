@@ -53,12 +53,14 @@ function App() {
       <Navbar />
       <main>
         <HeroSection />
+       
         <HeroTransitionSection />
+         <EditorialSection />
         <FloatingCardsSection />
         <PartnersSection />
         <VisionSection />
         <FeaturedSpeakerSection />
-        <EditorialSection />
+        
         <AvatarGridSection />
         <SequentialCardsSection />
         <PricingSection />

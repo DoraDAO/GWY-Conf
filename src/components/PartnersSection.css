@@ -1,5 +1,7 @@
 .partners-section {
     background: var(--color-bg-secondary);
+    padding-top: var(--spacing-2xl) !important;
+    padding-bottom: var(--spacing-1xl) !important;
 }
 
 .partners-header {
@@ -11,6 +13,26 @@
 .partners-headline {
     font-size: var(--text-5xl);
     margin-bottom: var(--spacing-md);
+}
+
+.typewriter-cursor {
+    display: inline-block;
+    margin-left: 2px;
+    animation: blink 0.7s step-end infinite;
+    font-weight: 300;
+}
+
+@keyframes blink {
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
 }
 
 .partners-subtext {

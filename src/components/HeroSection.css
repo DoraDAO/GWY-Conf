@@ -1,7 +1,7 @@
 .hero-section {
-    min-height: 250vh;
+    min-height: 200vh;
     position: relative;
-    padding-top: 100px;
+    padding-top: 120px;
     perspective: 1500px;
     transform-style: preserve-3d;
 }
@@ -9,12 +9,11 @@
 .hero-content-wrapper {
     position: sticky;
     top: 0;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
     transform-style: preserve-3d;
 }
 
@@ -27,6 +26,7 @@
     line-height: 1.05;
     letter-spacing: -0.03em;
     transform-style: preserve-3d;
+    /* margin-top: 200px; */
 }
 
 .hero-cards-container {
@@ -94,6 +94,7 @@
     will-change: transform, opacity;
     position: relative;
     z-index: 100;
+    margin-top: 60px;
 }
 
 .hero-description {
@@ -102,6 +103,7 @@
     margin-bottom: var(--spacing-xl);
     line-height: 1.8;
     font-weight: 500;
+    /* margin-top: 100px; */
 }
 
 .hero-cta-group {
@@ -111,23 +113,122 @@
     gap: var(--spacing-md);
     position: relative;
     z-index: 100;
+    /* padding-bottom: 150px; */
 }
 
-@media (max-width: 768px) {
-    .hero-headline {
-        font-size: var(--text-5xl);
+/* Tablet and smaller laptops */
+@media (max-width: 1024px) {
+    .hero-section {
+        min-height: 180vh;
+        padding-top: 80px;
+    }
+
+    .hero-cards-container {
+        height: 280px;
     }
 
     .hero-card {
-        width: 180px;
-        height: 200px;
+        width: 200px;
+        height: 220px;
+    }
+
+    .hero-bottom-content {
+        margin-top: 80px;
+        max-width: 600px;
+    }
+
+    .hero-description {
+        font-size: var(--text-md);
+    }
+}
+
+/* Mobile landscape and smaller tablets */
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 160vh;
+        padding-top: 60px;
+    }
+
+    .hero-headline {
+        font-size: clamp(36px, 10vw, 56px);
+        margin-bottom: var(--spacing-2xl);
+    }
+
+    .hero-cards-container {
+        height: 240px;
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .hero-card {
+        width: 160px;
+        height: 180px;
     }
 
     .hero-card-content {
-        font-size: var(--text-xl);
+        font-size: var(--text-lg);
+    }
+
+    .hero-bottom-content {
+        margin-top: 60px;
+        max-width: 90%;
+        padding: 0 var(--spacing-md);
+    }
+
+    .hero-description {
+        font-size: var(--text-sm);
+        line-height: 1.6;
+        margin-bottom: var(--spacing-md);
     }
 
     .hero-cta-group {
         flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    .hero-cta-group .btn {
+        width: 100%;
+        max-width: 280px;
+    }
+}
+
+/* Mobile portrait */
+@media (max-width: 640px) {
+    .hero-section {
+        min-height: 140vh;
+        padding-top: 40px;
+    }
+
+    .hero-headline {
+        font-size: clamp(28px, 12vw, 42px);
+        line-height: 1.1;
+        margin-bottom: var(--spacing-xl);
+    }
+
+    .hero-cards-container {
+        height: 200px;
+    }
+
+    .hero-card {
+        width: 120px;
+        height: 140px;
+    }
+
+    .hero-card-content {
+        font-size: var(--text-md);
+        padding: var(--spacing-sm);
+    }
+
+    .hero-bottom-content {
+        margin-top: 40px;
+    }
+
+    .hero-description {
+        font-size: var(--text-xs);
+        line-height: 1.5;
+    }
+
+    .username-pill {
+        font-size: var(--text-xs);
+        padding: var(--spacing-xs) var(--spacing-sm);
     }
 }
