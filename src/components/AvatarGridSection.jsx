@@ -48,15 +48,21 @@ const AvatarGridSection = () => {
     { id: 20, color: 'hsl(240, 65%, 60%)' },
   ];
 
+
+
   // Double the avatars for seamless loop
+
   const doubledTopAvatars = [...topAvatars, ...topAvatars];
   const doubledBottomAvatars = [...bottomAvatars, ...bottomAvatars];
 
   return (
     <section ref={sectionRef} className="avatar-grid-section section">
       <div className="avatar-marquee-container">
+
+
         
         {/* Top Row - Infinite Scroll with Wavy Motion */}
+
         <div className="avatar-row avatar-row-top">
           <motion.div
             className="avatar-track"
@@ -83,14 +89,21 @@ const AvatarGridSection = () => {
                   duration: 4,
                   repeat: Infinity,
                   ease: 'easeInOut',
+
+                  delay: index * 0.15, 
+
                   delay: index * 0.15, // Staggered timing
+
                 }}
               />
             ))}
           </motion.div>
         </div>
 
+
+
         {/* Center Content */}
+
         <motion.div
           className="avatar-headline-wrapper"
           style={{
@@ -100,14 +113,17 @@ const AvatarGridSection = () => {
           }}
         >
           <h2 className="avatar-headline">
-            You will find yourself among us
+            you will find yourself among us
           </h2>
           <p className="avatar-subtext">
-            Dive into a dynamic community where artists and buyers seamlessly merge.
+            dive into a dynamic community where artists and buyers seamlessly merge
           </p>
         </motion.div>
 
+
+
         {/* Bottom Row - Infinite Scroll with Wavy Motion */}
+
         <div className="avatar-row avatar-row-bottom">
           <motion.div
             className="avatar-track"
@@ -134,7 +150,11 @@ const AvatarGridSection = () => {
                   duration: 4.5,
                   repeat: Infinity,
                   ease: 'easeInOut',
+
+                  delay: index * 0.12, 
+
                   delay: index * 0.12, // Staggered timing
+
                 }}
               />
             ))}

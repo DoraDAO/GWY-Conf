@@ -6,6 +6,16 @@ import './FeaturedSpeakerSection.css';
 const FeaturedSpeakerSection = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-200px" });
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+
+
+  const cardScale = useTransform(scrollYProgress, [0.2, 0.4], [0.2, 1]);
+  const cardOpacity = useTransform(scrollYProgress, [0.2, 0.3], [0, 1]);
+  const cardY = useTransform(scrollYProgress, [0.2, 0.4], [-400, 0]);
+  
 
   // Scroll-based animation for featured card
   const { scrollYProgress } = useScroll({
@@ -21,6 +31,7 @@ const FeaturedSpeakerSection = () => {
   const cardY = useTransform(scrollYProgress, [0.2, 0.4], [-400, 0]);
   
   // Background grid: appears only after card has settled in center
+
   const gridOpacity = useTransform(scrollYProgress, [0.38, 0.5], [0, 1]);
   const gridScale = useTransform(scrollYProgress, [0.38, 0.5], [0.8, 1]);
 

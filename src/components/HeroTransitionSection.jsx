@@ -61,7 +61,7 @@ const HeroTransitionSection = () => {
             whileHover={{ scale: 1.05, rotate: 2 }}
             whileTap={{ scale: 0.95 }}
           >
-            Join Now
+            Apply Now
           </motion.button>
         </motion.div>
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Lenis from '@studio-freight/lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -16,11 +16,15 @@ import AvatarGridSection from './components/AvatarGridSection';
 import PricingSection from './components/PricingSection';
 import MarqueeSection from './components/MarqueeSection';
 import MarketplaceSection from './components/MarketplaceSection';
+import LeaderboardPage from './components/LeaderboardPage';
+import InstitutionsPage from './components/InstitutionsPage';
 import Footer from './components/Footer';
 
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
+  const [currentPage, setCurrentPage] = useState('home');
+
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.5,
@@ -41,33 +45,67 @@ function App() {
 
     gsap.ticker.lagSmoothing(0);
 
+    const handleHashChange = () => {
+      const hash = window.location.hash.slice(1);
+      if (hash === 'leaderboard') {
+        setCurrentPage('leaderboard');
+      } else if (hash === 'institutions') {
+        setCurrentPage('institutions');
+      } else {
+        setCurrentPage('home');
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    handleHashChange();
+
     return () => {
       lenis.destroy();
       gsap.ticker.remove(lenis.raf);
+      window.removeEventListener('hashchange', handleHashChange);
     };
   }, []);
 
-  return (
-    <div className="app">
-      <CustomCursor />
-      <Navbar />
+  const renderPage = () => {
+    if (currentPage === 'leaderboard') {
+      return <LeaderboardPage />;
+    } else if (currentPage === 'institutions') {
+      return <InstitutionsPage />;
+    }
+    
+    return (
       <main>
         <HeroSection />
        
         <HeroTransitionSection />
+
+        <EditorialSection />
+
          <EditorialSection />
+
         <FloatingCardsSection />
         <PartnersSection />
         <VisionSection />
         <FeaturedSpeakerSection />
+
+
         
+
         <AvatarGridSection />
         <SequentialCardsSection />
         <PricingSection />
         <MarqueeSection />
         <MarketplaceSection />
       </main>
-      <Footer />
+    );
+  };
+
+  return (
+    <div className="app">
+      <CustomCursor />
+      <Navbar currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      {renderPage()}
+      {currentPage === 'home' && <Footer />}
     </div>
   );
 }

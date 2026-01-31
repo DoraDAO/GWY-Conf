@@ -1,8 +1,8 @@
-# Dependencies
+# dependencies
 node_modules/
 bower_components/
 
-# Build outputs
+# build outputs
 dist/
 build/
 out/

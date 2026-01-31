@@ -17,17 +17,25 @@ const PartnersSection = () => {
   
   const fullText = "Trusted by the best.";
 
+
   // Typewriter effect
   useEffect(() => {
     if (isInView && currentIndex < fullText.length) {
       const timeout = setTimeout(() => {
         setDisplayedText(prev => prev + fullText[currentIndex]);
         setCurrentIndex(prev => prev + 1);
+
+      }, 80);
+
+      return () => clearTimeout(timeout);
+    } else if (currentIndex === fullText.length && !typingComplete) {
+
       }, 80); // Typing speed in milliseconds
 
       return () => clearTimeout(timeout);
     } else if (currentIndex === fullText.length && !typingComplete) {
       // Hide cursor when typing is complete
+
       setTimeout(() => {
         setShowCursor(false);
         setTypingComplete(true);
