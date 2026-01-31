@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+
 import { useState, useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -7,6 +8,7 @@ import './MarketplaceSection.css';
 gsap.registerPlugin(ScrollTrigger);
 
 const MarketplaceSection = () => {
+
   const [flippedCard, setFlippedCard] = useState(null);
   const sectionRef = useRef(null);
   const cardsRef = useRef(null);
@@ -96,10 +98,23 @@ const MarketplaceSection = () => {
           <circle cx="12" cy="12" r="3" fill="#fff"/>
         </svg>
       ),
+
+  const cards = [
+    {
+      id: 1,
+      title: 'Meets',
+      subtitle: 'new people',
+      description: 'Creators and enthusiasts to share, discover, and purchase unique artworks.',
+      buttonText: "Let's Meet",
+      buttonLink: '#meet',
+      background: 'linear-gradient(135deg, #C41E5B 0%, #E91E63 100%)',
+      textColor: '#ffffff',
+      icon: '✏️',
       imageType: 'person'
     },
     {
       id: 2,
+
       title: 'Discover',
       subtitle: 'new opportunities',
       description: 'Explore events, workshops, and networking sessions designed to accelerate your growth and expand your horizons.',
@@ -112,6 +127,16 @@ const MarketplaceSection = () => {
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/>
         </svg>
       ),
+
+      title: 'Archive',
+      subtitle: 'of new arts',
+      description: 'Canvas Carousel is the platform where artists can ride the wave of creativity, showcasing their work to a broad audience.',
+      buttonText: 'Archives',
+      buttonLink: '#archives',
+      background: '#FAFAFA',
+      textColor: '#000000',
+      icon: '🎨',
+
       imageType: 'flower'
     }
   ];
@@ -141,17 +166,26 @@ const MarketplaceSection = () => {
   };
 
   return (
+
     <section ref={sectionRef} className="marketplace-section section">
       <div ref={cardsRef} className="marketplace-cards-container">
         {cards.map((card, index) => (
           <motion.div
             key={card.id}
             data-card-id={card.id}
+
+    <section className="marketplace-section section">
+      <div className="marketplace-cards-container">
+        {cards.map((card, index) => (
+          <motion.div
+            key={card.id}
+
             className="marketplace-feature-card"
             style={{
               background: card.background,
               color: card.textColor
             }}
+
             initial={{ opacity: 0, scale: 0.6, rotateY: -45, y: 100 }}
             whileInView={{ opacity: 1, scale: 1, rotateY: 0, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -176,20 +210,38 @@ const MarketplaceSection = () => {
             }}
             onClick={() => handleCardClick(card.id)}
           >
+
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ 
+              duration: 0.8, 
+              delay: index * 0.2,
+              ease: [0.4, 0, 0.2, 1] 
+            }}
+            whileHover={{ scale: 1.02 }}
+          >
+            {/* Icon */}
+
             <motion.div 
               className="card-icon"
               initial={{ opacity: 0, scale: 0 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 + (index * 0.2) }}
+
               whileHover={{ 
                 scale: 1.1, 
                 rotateZ: 10,
                 transition: { duration: 0.2 } 
               }}
+
             >
               {card.icon}
             </motion.div>
+
+
+            {/* Content */}
 
             <div className="card-content">
               <motion.h3 
@@ -220,16 +272,21 @@ const MarketplaceSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.6 + (index * 0.2) }}
+
                 whileHover={{ 
                   scale: 1.05,
                   y: -2,
                   transition: { duration: 0.2 } 
                 }}
+
+                whileHover={{ scale: 1.05 }}
+
                 whileTap={{ scale: 0.95 }}
               >
                 {card.buttonText}
               </motion.a>
             </div>
+
 
             <motion.div 
               className={`card-image card-image-${card.imageType}`}
@@ -238,6 +295,10 @@ const MarketplaceSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 + (index * 0.2) }}
             ></motion.div>
+
+            {/* Decorative Image */}
+            <div className={`card-image card-image-${card.imageType}`}></div>
+
           </motion.div>
         ))}
       </div>

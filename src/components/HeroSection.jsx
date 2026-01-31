@@ -6,6 +6,10 @@ const HeroSection = () => {
   const sectionRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
   
+
+
+  // Detect screen size for responsive animations
+
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -16,38 +20,62 @@ const HeroSection = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+
   const spreadDistance = isMobile ? 0.5 : 1;  
+
+  // Responsive spread values
+  const spreadDistance = isMobile ? 0.5 : 1; // 50% on mobile  
+  // Extended scroll range for slower, more controlled animation
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"]
   });
 
+
   const spread = [0, 0.3, 0.7];
+
+  // Spread keyframes for gradual fan-out effect
+  const spread = [0, 0.3, 0.7];
+  
+  // Card 1 (leftmost) - moves down and far left
+
   const card1Y = useTransform(scrollYProgress, [0, 0.6], [0, 40]);
   const card1X = useTransform(scrollYProgress, spread, [0, -120 * spreadDistance, -260 * spreadDistance]);
   const card1Rotate = useTransform(scrollYProgress, [0, 0.6], [2, -12]);
   const card1Scale = useTransform(scrollYProgress, [0, 0.6], [1, 0.92]);
   
+
+
+  // Card 2 - moves slightly down and left
   const card2Y = useTransform(scrollYProgress, [0, 0.6], [0, 20]);
   const card2X = useTransform(scrollYProgress, spread, [0, -80 * spreadDistance, -180 * spreadDistance]);
   const card2Rotate = useTransform(scrollYProgress, [0, 0.6], [1, -8]);
   const card2Scale = useTransform(scrollYProgress, [0, 0.6], [1, 0.94]);
   
+
+
+  // Card 3 (left-center) - minimal vertical movement, slight left
   const card3Y = useTransform(scrollYProgress, [0, 0.6], [0, 0]);
   const card3X = useTransform(scrollYProgress, spread, [0, -30 * spreadDistance, -60 * spreadDistance]);
   const card3Rotate = useTransform(scrollYProgress, [0, 0.6], [0, -3]);
   const card3Scale = useTransform(scrollYProgress, [0, 0.6], [1, 0.96]);
   
+
+  // Card 4 (right-center) - minimal vertical movement, slight right
   const card4Y = useTransform(scrollYProgress, [0, 0.6], [0, 0]);
   const card4X = useTransform(scrollYProgress, spread, [0, 30 * spreadDistance, 60 * spreadDistance]);
   const card4Rotate = useTransform(scrollYProgress, [0, 0.6], [0, 3]);
   const card4Scale = useTransform(scrollYProgress, [0, 0.6], [1, 0.96]);
   
+
+  // Card 5 - moves slightly down and right
   const card5Y = useTransform(scrollYProgress, [0, 0.6], [0, 20]);
   const card5X = useTransform(scrollYProgress, spread, [0, 80 * spreadDistance, 180 * spreadDistance]);
   const card5Rotate = useTransform(scrollYProgress, [0, 0.6], [1, 8]);
   const card5Scale = useTransform(scrollYProgress, [0, 0.6], [1, 0.94]);
   
+  // Card 6 (rightmost) - moves down and far right
   const card6Y = useTransform(scrollYProgress, [0, 0.6], [0, 40]);
   const card6X = useTransform(scrollYProgress, spread, [0, 120 * spreadDistance, 260 * spreadDistance]);
   const card6Rotate = useTransform(scrollYProgress, [0, 0.6], [2, 12]);
@@ -56,6 +84,11 @@ const HeroSection = () => {
   const textOpacity = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
   const textY = useTransform(scrollYProgress, [0, 0.25], [0, -50]);
 
+  // Headline fades out early
+  const textOpacity = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
+  const textY = useTransform(scrollYProgress, [0, 0.25], [0, -50]);
+
+  // Content appears after cards start fanning out
   const contentOpacity = useTransform(scrollYProgress, [0.4, 0.6], [0, 1]);
   const contentY = useTransform(scrollYProgress, [0.4, 0.6], [40, 0]);
 

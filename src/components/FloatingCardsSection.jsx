@@ -11,18 +11,26 @@ const FloatingCardsSection = () => {
     offset: ["start end", "end start"]
   });
 
+
+
+  // Card 1 - Left card animation
   const card1X = useTransform(scrollYProgress, [0.1, 0.22, 0.4, 0.55, 0.68], [0, 0, 0, -350, -500]);
   const card1Y = useTransform(scrollYProgress, [0.1, 0.22, 0.4, 0.55, 0.68], [-50, -50, -50, -100, -150]);
   const card1RotateY = useTransform(scrollYProgress, [0.1, 0.22, 0.4, 0.55, 0.68], [0, 0, 360, 360, 360]);
   const card1Scale = useTransform(scrollYProgress, [0.1, 0.22, 0.4, 0.55, 0.68], [0, 1, 1, 1, 0.8]);
   const card1Opacity = useTransform(scrollYProgress, [0.1, 0.14, 0.55, 0.68], [0, 1, 1, 0]);
   
+
+
+  // Card 2 - Center card animation
   const card2X = useTransform(scrollYProgress, [0.12, 0.24, 0.42, 0.57, 0.7], [0, 0, 0, 0, 0]);
   const card2Y = useTransform(scrollYProgress, [0.12, 0.24, 0.42, 0.57, 0.7], [-50, -50, -50, -80, -130]);
   const card2RotateY = useTransform(scrollYProgress, [0.12, 0.24, 0.42, 0.57, 0.7], [0, 0, 360, 360, 360]);
   const card2Scale = useTransform(scrollYProgress, [0.12, 0.24, 0.42, 0.57, 0.7], [0, 1, 1, 1, 0.8]);
   const card2Opacity = useTransform(scrollYProgress, [0.12, 0.16, 0.57, 0.7], [0, 1, 1, 0]);
   
+
+  // Card 3 - Right card animation
   const card3X = useTransform(scrollYProgress, [0.14, 0.26, 0.44, 0.59, 0.72], [0, 0, 0, 450, 650]);
   const card3Y = useTransform(scrollYProgress, [0.14, 0.26, 0.44, 0.59, 0.72], [-50, -50, -50, -100, -150]);
   const card3RotateY = useTransform(scrollYProgress, [0.14, 0.26, 0.44, 0.59, 0.72], [0, 0, 360, 360, 360]);

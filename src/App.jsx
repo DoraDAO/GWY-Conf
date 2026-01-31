@@ -76,12 +76,21 @@ function App() {
     return (
       <main>
         <HeroSection />
+       
         <HeroTransitionSection />
+
         <EditorialSection />
+
+         <EditorialSection />
+
         <FloatingCardsSection />
         <PartnersSection />
         <VisionSection />
         <FeaturedSpeakerSection />
+
+
+        
+
         <AvatarGridSection />
         <SequentialCardsSection />
         <PricingSection />
