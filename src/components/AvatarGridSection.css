@@ -9,11 +9,9 @@
     justify-content: center;
 }
 
-.avatar-scattered-container {
+.avatar-marquee-container {
     width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 var(--spacing-xl);
+    height: 100%;
     position: relative;
     min-height: 100vh;
     display: flex;
@@ -21,14 +19,42 @@
     justify-content: center;
 }
 
-.avatar-item-scattered {
+.avatar-row {
     position: absolute;
-    width: 90px;
-    height: 90px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.avatar-row-top {
+    top: 10%;
+}
+
+.avatar-row-bottom {
+    bottom: 10%;
+}
+
+.avatar-track {
+    display: flex;
+    gap: 80px;
+    padding: 20px 0;
+    will-change: transform;
+}
+
+.avatar-item-marquee {
+    width: 60px;
+    height: 60px;
     border-radius: 20px;
     will-change: transform;
-    box-shadow: none;
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.avatar-item-marquee:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
 .avatar-headline-wrapper {
@@ -60,10 +86,14 @@
 }
 
 @media (max-width: 1024px) {
-    .avatar-item-scattered {
+    .avatar-item-marquee {
         width: 70px;
         height: 70px;
         border-radius: 16px;
+    }
+
+    .avatar-track {
+        gap: 60px;
     }
 }
 
@@ -73,15 +103,26 @@
         min-height: 80vh;
     }
 
-    .avatar-scattered-container {
+    .avatar-marquee-container {
         min-height: 80vh;
-        padding: 0 var(--spacing-md);
     }
 
-    .avatar-item-scattered {
+    .avatar-item-marquee {
         width: 50px;
         height: 50px;
         border-radius: 12px;
+    }
+
+    .avatar-track {
+        gap: 40px;
+    }
+
+    .avatar-row-top {
+        top: 5%;
+    }
+
+    .avatar-row-bottom {
+        bottom: 5%;
     }
 
     .avatar-headline-wrapper {
@@ -94,7 +135,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .avatar-item-scattered {
+    .avatar-track {
+        animation: none !important;
+    }
+
+    .avatar-item-marquee {
         animation: none !important;
     }
 }

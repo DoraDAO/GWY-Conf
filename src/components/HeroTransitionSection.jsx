@@ -24,12 +24,12 @@ const HeroTransitionSection = () => {
   const buttonY = useTransform(scroll, [0.2, 0.4], [20, 0]);
 
   const cards = [
-    { id: 1, color: "#06B6D4", label: "Bounties", x: 150, y: 80, r: -4 },
-    { id: 2, color: "#9333EA", label: "Girls Who Yap", x: 280, y: 150, r: 6 },
-    { id: 3, color: "#FF006E", label: "Doradao", x: 320, y: 180, r: -5 },
-    { id: 4, color: "#F97316", label: "Speaker", x: 400, y: 250, r: 7 },
-    { id: 5, color: "#10B981", label: "Conference", x: 200, y: 320, r: 5 },
-    { id: 6, color: "#3B82F6", label: "Community", x: 480, y: 120, r: -6 }
+    { id: 1, color: "#06B6D4", label: "Bounties", x: 100, y: 0, r: -4 },
+    { id: 2, color: "#9333EA", label: "Girls Who Yap", x: 200, y: 0, r: 6 },
+    { id: 3, color: "#FF006E", label: "Doradao", x: 300, y: 0, r: -5 },
+    { id: 4, color: "#F97316", label: "Speaker", x: 400, y: 0, r: 7 },
+    { id: 5, color: "#10B981", label: "Conference", x: 500, y: 0, r: 5 },
+    { id: 6, color: "#3B82F6", label: "Community", x: 250, y: 0, r: -6 }
   ];
 
   return (
@@ -61,7 +61,7 @@ const HeroTransitionSection = () => {
             whileHover={{ scale: 1.05, rotate: 2 }}
             whileTap={{ scale: 0.95 }}
           >
-            Join Now
+            Apply Now
           </motion.button>
         </motion.div>
 

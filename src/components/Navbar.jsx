@@ -6,11 +6,25 @@ import './Navbar.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Navbar = () => {
+const Navbar = ({ currentPage, setCurrentPage }) => {
   const [programOpen, setProgramOpen] = useState(false);
   const [ambassadorOpen, setAmbassadorOpen] = useState(false);
+  const [partnerOpen, setPartnerOpen] = useState(false);
   const navRef = useRef(null);
 
+  const handleNavigation = (page, e) => {
+    e.preventDefault();
+    if (page === 'home') {
+      window.location.hash = '';
+      setCurrentPage('home');
+    } else {
+      window.location.hash = page;
+      setCurrentPage(page);
+    }
+    setProgramOpen(false);
+    setAmbassadorOpen(false);
+    setPartnerOpen(false);
+  };
   useEffect(() => {
     const nav = navRef.current;
     if (!nav) return;
@@ -44,7 +58,11 @@ const Navbar = () => {
   return (
     <nav ref={navRef} className="navbar">
       <div className="container navbar-container">
-        <a href="#home" className="navbar-logo">
+        <a 
+          href="#home" 
+          className="navbar-logo"
+          onClick={(e) => handleNavigation('home', e)}
+        >
           <img 
             src="/images/logo.png" 
             alt="logo" 
@@ -94,17 +112,55 @@ const Navbar = () => {
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
                 >
-                  <a href="#leaderboard" className="dropdown-item">Leaderboard</a>
-                  <a href="#partner" className="dropdown-item">Partner</a>
+                  <a 
+                    href="#leaderboard" 
+                    className="dropdown-item"
+                    onClick={(e) => handleNavigation('leaderboard', e)}
+                  >
+                    Leaderboard
+                  </a>
+                  <a 
+                    href="#apply" 
+                    className="dropdown-item"
+                  >
+                    Apply Now
+                  </a>
                 </motion.div>
               )}
             </AnimatePresence>
           </div>
 
-          <a href="#community" className="navbar-link">Community</a>
-          <a href="#media" className="navbar-link">Media</a>
-          <a href="#sponsors" className="navbar-link">Sponsors</a>
-          <a href="#institutions" className="navbar-link">Institutions</a>
+          <div 
+            className="navbar-dropdown"
+            onMouseEnter={() => setPartnerOpen(true)}
+            onMouseLeave={() => setPartnerOpen(false)}
+          >
+            <button className="navbar-link dropdown-trigger">
+              Partner <span className="dropdown-arrow">▾</span>
+            </button>
+            <AnimatePresence>
+              {partnerOpen && (
+                <motion.div
+                  className="dropdown-menu"
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
+                >
+                  <a href="#community" className="dropdown-item">Community</a>
+                  <a href="#media" className="dropdown-item">Media</a>
+                  <a href="#sponsors" className="dropdown-item">Sponsors</a>
+                  <a 
+                    href="#institutions" 
+                    className="dropdown-item"
+                    onClick={(e) => handleNavigation('institutions', e)}
+                  >
+                    Institutions
+                  </a>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
           <a href="#register" className="btn btn-primary navbar-cta">
             Register
           </a>

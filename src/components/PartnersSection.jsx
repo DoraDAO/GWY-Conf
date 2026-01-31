@@ -1,5 +1,5 @@
-import { useRef, useEffect } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { useRef, useEffect, useState } from 'react';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './PartnersSection.css';
@@ -10,6 +10,28 @@ const PartnersSection = () => {
   const sectionRef = useRef(null);
   const headerRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const [displayedText, setDisplayedText] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [showCursor, setShowCursor] = useState(true);
+  const [typingComplete, setTypingComplete] = useState(false);
+  
+  const fullText = "Trusted by the best.";
+
+  useEffect(() => {
+    if (isInView && currentIndex < fullText.length) {
+      const timeout = setTimeout(() => {
+        setDisplayedText(prev => prev + fullText[currentIndex]);
+        setCurrentIndex(prev => prev + 1);
+      }, 80);
+
+      return () => clearTimeout(timeout);
+    } else if (currentIndex === fullText.length && !typingComplete) {
+      setTimeout(() => {
+        setShowCursor(false);
+        setTypingComplete(true);
+      }, 500);
+    }
+  }, [isInView, currentIndex, fullText, typingComplete]);
 
   useEffect(() => {
     const header = headerRef.current;
@@ -43,11 +65,21 @@ const PartnersSection = () => {
       <div className="container">
         <div ref={headerRef} className="partners-header">
           <h2 className="partners-headline">
-            Trusted by the <span style={{ fontWeight: 800 }}>best</span>.
+            {displayedText}
+            {showCursor && <span className="typewriter-cursor">|</span>}
           </h2>
-          <p className="partners-subtext text-muted">
-            Leading institutions and organizations supporting Girls Who Yap.
-          </p>
+          <AnimatePresence>
+            {typingComplete && (
+              <motion.p
+                className="partners-subtext text-muted"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+              >
+                Leading institutions and organizations supporting Girls Who Yap.
+              </motion.p>
+            )}
+          </AnimatePresence>
         </div>
 
         <div className="partners-marquee">

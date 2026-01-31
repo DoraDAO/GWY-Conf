@@ -1,207 +1,246 @@
-import { useRef, Fragment } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { useState, useRef, useEffect } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './MarketplaceSection.css';
 
-const MarketplaceSection = () => {
-  const sectionRef = useRef(null);
-  
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"]
-  });
+gsap.registerPlugin(ScrollTrigger);
 
-  const scrollProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
+const MarketplaceSection = () => {
+  const [flippedCard, setFlippedCard] = useState(null);
+  const sectionRef = useRef(null);
+  const cardsRef = useRef(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const cardsContainer = cardsRef.current;
+    
+    if (!section || !cardsContainer) return;
+
+    const ctx = gsap.context(() => {
+      const cards = cardsContainer.querySelectorAll('.marketplace-feature-card');
+      
+      gsap.fromTo(cards, 
+        {
+          opacity: 0,
+          scale: 0.6,
+          rotationY: -45,
+          y: 100,
+          z: -200
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          rotationY: 0,
+          y: 0,
+          z: 0,
+          duration: 1.2,
+          stagger: 0.3,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 70%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+
+      gsap.to(cards[0], {
+        y: -20,
+        rotationY: 5,
+        duration: 2,
+        repeat: -1,
+        yoyo: true,
+        ease: 'power2.inOut',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 50%',
+          end: 'bottom 50%',
+          toggleActions: 'play none none pause'
+        }
+      });
+
+      gsap.to(cards[1], {
+        y: -15,
+        rotationY: -5,
+        duration: 2.5,
+        repeat: -1,
+        yoyo: true,
+        ease: 'power2.inOut',
+        delay: 0.5,
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 50%',
+          end: 'bottom 50%',
+          toggleActions: 'play none none pause'
+        }
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
 
   const cards = [
-    { 
-      id: 1, 
-      color: '#8B1A1A', 
-      image: 'art1',
-      username: '@howard',
-      initialX: 0,
-      finalX: 50,
-      finalY: -20,
-      rotate: -8,
-      zIndex: 5
+    {
+      id: 1,
+      title: 'Connect',
+      subtitle: 'with community',
+      description: 'Join passionate creators, innovators, and changemakers to share ideas, collaborate, and build meaningful connections.',
+      buttonText: "Let's Connect",
+      buttonLink: '#connect',
+      background: 'linear-gradient(135deg, #C41E5B 0%, #E91E63 100%)',
+      textColor: '#ffffff',
+      icon: (
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor"/>
+          <circle cx="12" cy="12" r="3" fill="#fff"/>
+        </svg>
+      ),
+      imageType: 'person'
     },
-    { 
-      id: 2, 
-      color: '#E63946', 
-      image: 'art2',
-      username: null,
-      initialX: 0,
-      finalX: 180,
-      finalY: 10,
-      rotate: 3,
-      zIndex: 6
-    },
-    { 
-      id: 3, 
-      color: '#F1FAEE', 
-      image: 'art3',
-      username: '@robin',
-      initialX: 0,
-      finalX: 320,
-      finalY: -30,
-      rotate: 5,
-      zIndex: 4
-    },
-    { 
-      id: 4, 
-      color: '#457B9D', 
-      image: 'art4',
-      username: null,
-      initialX: 0,
-      finalX: 450,
-      finalY: 35,
-      rotate: -4,
-      zIndex: 3
-    },
-    { 
-      id: 5, 
-      color: '#FFD60A', 
-      image: 'art5',
-      username: null,
-      initialX: 0,
-      finalX: 580,
-      finalY: -10,
-      rotate: 7,
-      zIndex: 2
-    },
+    {
+      id: 2,
+      title: 'Discover',
+      subtitle: 'new opportunities',
+      description: 'Explore events, workshops, and networking sessions designed to accelerate your growth and expand your horizons.',
+      buttonText: 'Explore Events',
+      buttonLink: '#events',
+      background: '#FAFAFA',
+      textColor: '#000000',
+      icon: (
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/>
+        </svg>
+      ),
+      imageType: 'flower'
+    }
   ];
+
+  const handleCardClick = (cardId) => {
+    setFlippedCard(cardId);
+    
+    const cardElement = document.querySelector(`[data-card-id="${cardId}"]`);
+    if (cardElement) {
+      gsap.to(cardElement, {
+        rotationY: 360,
+        scale: 0.9,
+        y: -30,
+        duration: 1.2,
+        ease: 'power2.inOut',
+        onComplete: () => {
+          setFlippedCard(null);
+          gsap.to(cardElement, {
+            scale: 1,
+            y: 0,
+            duration: 0.3,
+            ease: 'power2.out'
+          });
+        }
+      });
+    }
+  };
 
   return (
     <section ref={sectionRef} className="marketplace-section section">
-      <motion.div 
-        className="container marketplace-container"
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.9, ease: [0.4, 0, 0.2, 1] }}
-      >
-        {/* left */}
-        <motion.div 
-          className="marketplace-left"
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
-        >
-          <motion.p 
-            className="marketplace-eyebrow"
-            initial={{ opacity: 0, y: -10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
+      <div ref={cardsRef} className="marketplace-cards-container">
+        {cards.map((card, index) => (
+          <motion.div
+            key={card.id}
+            data-card-id={card.id}
+            className="marketplace-feature-card"
+            style={{
+              background: card.background,
+              color: card.textColor
+            }}
+            initial={{ opacity: 0, scale: 0.6, rotateY: -45, y: 100 }}
+            whileInView={{ opacity: 1, scale: 1, rotateY: 0, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ 
+              duration: 1.2, 
+              delay: index * 0.3,
+              ease: [0.4, 0, 0.2, 1] 
+            }}
+            whileHover={{ 
+              scale: 1.05,
+              rotateX: 15,
+              rotateY: index === 0 ? 15 : -15,
+              y: -20,
+              z: 50,
+              transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] }
+            }}
+            whileTap={{ 
+              scale: 0.9,
+              rotateY: 180,
+              y: -30,
+              transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] }
+            }}
+            onClick={() => handleCardClick(card.id)}
           >
-            E-COMMERCE
-          </motion.p>
-          <motion.h2 
-            className="marketplace-headline"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
-          >
-            Showcase, Sell,<br />
-            <span className="text-accent">& acquire arts to</span><br />
-            our marketplace.
-          </motion.h2>
-          <motion.p 
-            className="marketplace-description"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
-          >
-            Dynamic community where artists and buyers seamlessly merge. ArtFusion 
-            brings together creators and enthusiasts to share creativity.
-          </motion.p>
-          <motion.div 
-            className="marketplace-cta-group"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.5, ease: [0.4, 0, 0.2, 1] }}
-          >
-            <a href="#join" className="btn btn-primary">
-              Join Now
-            </a>
+            <motion.div 
+              className="card-icon"
+              initial={{ opacity: 0, scale: 0 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 + (index * 0.2) }}
+              whileHover={{ 
+                scale: 1.1, 
+                rotateZ: 10,
+                transition: { duration: 0.2 } 
+              }}
+            >
+              {card.icon}
+            </motion.div>
+
+            <div className="card-content">
+              <motion.h3 
+                className="card-title"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 + (index * 0.2) }}
+              >
+                {card.title}<br />
+                {card.subtitle}
+              </motion.h3>
+              
+              <motion.p 
+                className="card-description"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 + (index * 0.2) }}
+              >
+                {card.description}
+              </motion.p>
+              
+              <motion.a
+                href={card.buttonLink}
+                className="card-button"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.6 + (index * 0.2) }}
+                whileHover={{ 
+                  scale: 1.05,
+                  y: -2,
+                  transition: { duration: 0.2 } 
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {card.buttonText}
+              </motion.a>
+            </div>
+
+            <motion.div 
+              className={`card-image card-image-${card.imageType}`}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 + (index * 0.2) }}
+            ></motion.div>
           </motion.div>
-        </motion.div>
-
-        {/* right */}
-        <div className="marketplace-cards-wrapper">
-          {cards.map((card, index) => {
-            const cardX = useTransform(
-              scrollProgress,
-              [0.2, 0.5],
-              [card.initialX, card.finalX]
-            );
-            const cardY = useTransform(
-              scrollProgress,
-              [0.2, 0.5],
-              [0, card.finalY]
-            );
-            const cardRotate = useTransform(
-              scrollProgress,
-              [0.2, 0.5],
-              [0, card.rotate]
-            );
-            const cardOpacity = useTransform(
-              scrollProgress,
-              [0.15, 0.3],
-              [0, 1]
-            );
-
-            return (
-              <Fragment key={card.id}>
-                <motion.div
-                  className="marketplace-card-explode"
-                  style={{
-                    x: cardX,
-                    y: cardY,
-                    rotate: cardRotate,
-                    opacity: cardOpacity,
-                    background: card.color,
-                    zIndex: card.zIndex
-                  }}
-                  whileHover={{ scale: 1.05, rotate: card.rotate + 2 }}
-                >
-                  <motion.div 
-                    className="card-placeholder"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 0.3 + (index * 0.1) }}
-                  >
-                    <div className="card-art-content"></div>
-                  </motion.div>
-                </motion.div>
-                {card.username && (
-                  <motion.div
-                    className="card-username-tag"
-                    style={{
-                      x: useTransform(cardX, (x) => x + 20),
-                      y: useTransform(cardY, (y) => y - 40),
-                      opacity: cardOpacity,
-                      zIndex: card.zIndex + 10
-                    }}
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 0.4, delay: 0.5 + (index * 0.1) }}
-                  >
-                    {card.username}
-                  </motion.div>
-                )}
-              </Fragment>
-            );
-          })}
-        </div>
-      </motion.div>
+        ))}
+      </div>
     </section>
   );
 };
