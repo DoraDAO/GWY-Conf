@@ -1,28 +1,17 @@
+
 import { useRef } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { Heart } from 'lucide-react';
 import './FeaturedSpeakerSection.css';
-
 const FeaturedSpeakerSection = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-200px" });
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"]
-  });
-
-
-  const cardScale = useTransform(scrollYProgress, [0.2, 0.4], [0.2, 1]);
-  const cardOpacity = useTransform(scrollYProgress, [0.2, 0.3], [0, 1]);
-  const cardY = useTransform(scrollYProgress, [0.2, 0.4], [-400, 0]);
   
-
   // Scroll-based animation for featured card
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"]
   });
-
   // Featured card: scales from 0.2 to 1 early in the scroll (faster)
   const cardScale = useTransform(scrollYProgress, [0.2, 0.4], [0.2, 1]);
   const cardOpacity = useTransform(scrollYProgress, [0.2, 0.3], [0, 1]);
@@ -31,15 +20,12 @@ const FeaturedSpeakerSection = () => {
   const cardY = useTransform(scrollYProgress, [0.2, 0.4], [-400, 0]);
   
   // Background grid: appears only after card has settled in center
-
   const gridOpacity = useTransform(scrollYProgress, [0.38, 0.5], [0, 1]);
   const gridScale = useTransform(scrollYProgress, [0.38, 0.5], [0.8, 1]);
-
   const avatars = Array.from({ length: 24 }, (_, i) => ({
     id: i,
     color: `hsl(${i * 30}, 70%, 60%)`
   }));
-
   return (
     <section ref={sectionRef} className="featured-speaker-section section">
       <motion.div 
@@ -64,7 +50,6 @@ const FeaturedSpeakerSection = () => {
             />
           ))}
         </motion.div>
-
         <motion.div
           className="featured-center-card"
           style={{ 
@@ -72,7 +57,6 @@ const FeaturedSpeakerSection = () => {
             opacity: cardOpacity,
             y: cardY
           }}
-          whileHover={{ scale: 1.02 }}
         >
           <motion.div 
             className="featured-image" 
@@ -112,5 +96,4 @@ const FeaturedSpeakerSection = () => {
     </section>
   );
 };
-
 export default FeaturedSpeakerSection;

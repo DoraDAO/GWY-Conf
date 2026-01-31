@@ -81,7 +81,7 @@ function App() {
 
         <EditorialSection />
 
-         <EditorialSection />
+        
 
         <FloatingCardsSection />
         <PartnersSection />

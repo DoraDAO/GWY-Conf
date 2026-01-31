@@ -19,8 +19,6 @@ const AvatarGridSection = () => {
   const textY = useTransform(scrollProgress, [0.2, 0.5], [60, 0]);
   const textOpacity = useTransform(scrollProgress, [0.2, 0.5], [0, 1]);
   const textScale = useTransform(scrollProgress, [0.2, 0.5], [0.96, 1]);
-
-  // Top row avatars - evenly spaced for marquee
   const topAvatars = [
     { id: 1, color: 'hsl(140, 60%, 50%)' },
     { id: 2, color: 'hsl(280, 65%, 55%)' },
@@ -34,7 +32,6 @@ const AvatarGridSection = () => {
     { id: 10, color: 'hsl(160, 65%, 52%)' },
   ];
 
-  // Bottom row avatars
   const bottomAvatars = [
     { id: 11, color: 'hsl(330, 65%, 60%)' },
     { id: 12, color: 'hsl(260, 60%, 55%)' },
@@ -48,21 +45,12 @@ const AvatarGridSection = () => {
     { id: 20, color: 'hsl(240, 65%, 60%)' },
   ];
 
-
-
-  // Double the avatars for seamless loop
-
   const doubledTopAvatars = [...topAvatars, ...topAvatars];
   const doubledBottomAvatars = [...bottomAvatars, ...bottomAvatars];
 
   return (
     <section ref={sectionRef} className="avatar-grid-section section">
       <div className="avatar-marquee-container">
-
-
-        
-        {/* Top Row - Infinite Scroll with Wavy Motion */}
-
         <div className="avatar-row avatar-row-top">
           <motion.div
             className="avatar-track"
@@ -89,20 +77,12 @@ const AvatarGridSection = () => {
                   duration: 4,
                   repeat: Infinity,
                   ease: 'easeInOut',
-
                   delay: index * 0.15, 
-
-                  delay: index * 0.15, // Staggered timing
-
                 }}
               />
             ))}
           </motion.div>
         </div>
-
-
-
-        {/* Center Content */}
 
         <motion.div
           className="avatar-headline-wrapper"
@@ -113,16 +93,12 @@ const AvatarGridSection = () => {
           }}
         >
           <h2 className="avatar-headline">
-            you will find yourself among us
+            You will find yourself among us
           </h2>
           <p className="avatar-subtext">
             dive into a dynamic community where artists and buyers seamlessly merge
           </p>
         </motion.div>
-
-
-
-        {/* Bottom Row - Infinite Scroll with Wavy Motion */}
 
         <div className="avatar-row avatar-row-bottom">
           <motion.div
@@ -150,11 +126,7 @@ const AvatarGridSection = () => {
                   duration: 4.5,
                   repeat: Infinity,
                   ease: 'easeInOut',
-
                   delay: index * 0.12, 
-
-                  delay: index * 0.12, // Staggered timing
-
                 }}
               />
             ))}
@@ -167,3 +139,4 @@ const AvatarGridSection = () => {
 };
 
 export default AvatarGridSection;
+

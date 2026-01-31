@@ -21,8 +21,6 @@ const HeroSection = () => {
   }, []);
 
 
-  const spreadDistance = isMobile ? 0.5 : 1;  
-
   // Responsive spread values
   const spreadDistance = isMobile ? 0.5 : 1; // 50% on mobile  
   // Extended scroll range for slower, more controlled animation
@@ -32,8 +30,6 @@ const HeroSection = () => {
     offset: ["start start", "end end"]
   });
 
-
-  const spread = [0, 0.3, 0.7];
 
   // Spread keyframes for gradual fan-out effect
   const spread = [0, 0.3, 0.7];
@@ -80,9 +76,6 @@ const HeroSection = () => {
   const card6X = useTransform(scrollYProgress, spread, [0, 120 * spreadDistance, 260 * spreadDistance]);
   const card6Rotate = useTransform(scrollYProgress, [0, 0.6], [2, 12]);
   const card6Scale = useTransform(scrollYProgress, [0, 0.6], [1, 0.92]);
-
-  const textOpacity = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
-  const textY = useTransform(scrollYProgress, [0, 0.25], [0, -50]);
 
   // Headline fades out early
   const textOpacity = useTransform(scrollYProgress, [0, 0.25], [1, 0]);

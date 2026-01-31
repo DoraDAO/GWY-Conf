@@ -112,7 +112,6 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
                 >
-
                   <a 
                     href="#leaderboard" 
                     className="dropdown-item"
@@ -126,9 +125,6 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
                   >
                     Apply Now
                   </a>
-
-                  <a href="#leaderboard" className="dropdown-item">Leaderboard</a>
-
                 </motion.div>
               )}
             </AnimatePresence>
@@ -154,7 +150,6 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
                   <a href="#community" className="dropdown-item">Community</a>
                   <a href="#media" className="dropdown-item">Media</a>
                   <a href="#sponsors" className="dropdown-item">Sponsors</a>
-
                   <a 
                     href="#institutions" 
                     className="dropdown-item"
@@ -162,9 +157,6 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
                   >
                     Institutions
                   </a>
-
-                  <a href="#institutions" className="dropdown-item">Institutions</a>
-
                 </motion.div>
               )}
             </AnimatePresence>
