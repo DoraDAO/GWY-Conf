@@ -34,8 +34,8 @@ const MarketplaceSection = () => {
           rotationY: 0,
           y: 0,
           z: 0,
-          duration: 0.4,
-          stagger: 0.1,
+          duration: 0.25,
+          stagger: 0.08,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: section,
@@ -156,8 +156,8 @@ const MarketplaceSection = () => {
             whileInView={{ opacity: 1, scale: 1, rotateY: 0, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ 
-              duration: 0.4, 
-              delay: index * 0.1,
+              duration: 0.25, 
+              delay: index * 0.08,
               ease: [0.4, 0, 0.2, 1] 
             }}
             whileHover={{ 
