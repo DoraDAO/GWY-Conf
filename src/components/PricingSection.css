@@ -119,3 +119,55 @@
         transform: scale(1);
     }
 }
+
+@media (max-width: 768px) {
+    .pricing-header-title {
+        font-size: var(--text-4xl);
+    }
+
+    .pricing-card-title {
+        font-size: var(--text-2xl);
+    }
+
+    .pricing-card-description {
+        font-size: var(--text-sm);
+    }
+
+    .pricing-feature {
+        font-size: var(--text-sm);
+    }
+}
+
+@media (max-width: 640px) {
+    .pricing-header-title {
+        font-size: var(--text-3xl);
+    }
+
+    .pricing-header-description {
+        font-size: var(--text-sm);
+    }
+
+    .pricing-card {
+        padding: var(--spacing-xl);
+    }
+
+    .pricing-card-title {
+        font-size: var(--text-xl);
+    }
+
+    .pricing-card-description {
+        font-size: var(--text-xs);
+    }
+
+    .pricing-price {
+        font-size: var(--text-2xl);
+    }
+
+    .pricing-feature {
+        font-size: var(--text-xs);
+    }
+
+    .pricing-note {
+        font-size: 11px;
+    }
+}

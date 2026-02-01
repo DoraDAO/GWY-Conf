@@ -100,14 +100,14 @@ const SequentialCardsSection = () => {
             <span style={{ color: 'white', fontWeight: 'bold' }}>GWY</span>
           </div>
           <h2 className="sequential-headline">
-            Where Women Meet Opportunity
+            GWY Night Camp
           </h2>
           <p className="sequential-subtitle">
-            CULTURE & CAREER
+            Starting from 7th feb.
           </p>
           <p className="sequential-description">
-            Allowing speakers to showcase their voice and attendees to find 
-            unique, inspiring sessions.
+            The pre‑conference is designed to help you ease into the main event while forming early connections. Expect smaller sessions, focused discussions, workshops, and community activities that set the tone for the conference ahead.
+            This is where conversations start, and often continue long after the conference ends.
           </p>
         </div>
 

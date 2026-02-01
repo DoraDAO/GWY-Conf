@@ -6,7 +6,7 @@ const EditorialSection = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
-  const words = ["Gateway", "to", "bold", "voices."];
+  const words = ["What", "it", "feels", "like", "to", "be", "at", "GirlsWhoYap"];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -52,7 +52,8 @@ const EditorialSection = () => {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
             transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
           >
-            CLASS BY GIRLS WHO YAP
+            Not a conference you attend. A space you belong to.
+
           </motion.p>
           <h2 className="editorial-headline">
             {words.map((word, index) => (

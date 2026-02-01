@@ -107,8 +107,8 @@ const HeroSection = () => {
             y: textY,
           }}
         >
-          A Community Led Space<br />
-          Shaped By People.
+          Where women don't just attend conferences,<br />
+          they shape conversations.
         </motion.h1>
         
         <div className="hero-cards-container">
@@ -161,11 +161,11 @@ const HeroSection = () => {
           style={{ opacity: contentOpacity, y: contentY }}
         >
           <p className="hero-description">
-            What started as conversations, late night ideas and a community that believed in showing up, is now evolving into a space where voices meet opportunity, stories turn into action and women shape what's next.
+            GirlsWhoYap Conference is a creator-first gathering for women builders, thinkers, creators, and leaders across tech, web3, AI, design, product, media, and culture.
           </p>
           <div className="hero-cta-group">
             <a href="https://forms.gle/GMrrwXAg67THNBN58" className="btn btn-primary">
-              Get Started
+              Night Camp
             </a>
             <a 
               href="https://doradao.substack.com/p/girls-who-yap-conf-launch" 
@@ -173,7 +173,7 @@ const HeroSection = () => {
               rel="noopener noreferrer"
               className="btn btn-secondary"
             >
-              Read more
+              Pre-Conf
             </a>
           </div>
         </motion.div>

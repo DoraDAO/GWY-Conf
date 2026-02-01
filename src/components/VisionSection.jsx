@@ -93,12 +93,16 @@ const VisionSection = () => {
             <Eye size={32} />
           </div>
           <h2 className="vision-headline">
-            Our vision for <span className="text-muted">women in culture and tech.</span>
+            Pre-Conference Experiences
           </h2>
           <p className="vision-description">
-            Every piece of art tells a story. Echoes of Expression allows artists 
-            to showcase their personal journeys through their work.
+           Before the main conference, we host curated pre-conference sessions designed to go deeper.
+Smaller groups, focused discussions, hands-on learning, and intentional networking — so when the conference begins, connections already exist.
+
           </p>
+
+          <button className="btn btn-primary">Learn More</button>
+
 
           <div ref={iconsRef} className="vision-icons-grid">
             {iconComponents.map((icon, index) => (
@@ -112,9 +116,7 @@ const VisionSection = () => {
         <div ref={rightRef} className="vision-right">
           <div className="vision-card-container">
             <div className="vision-tabs">
-              <button className="vision-tab active">Business</button>
-              <button className="vision-tab">Personal</button>
-              <button className="vision-create-btn">+ Create</button>
+              <button className="vision-tab active">Experience</button>
             </div>
             <div className="vision-cards-grid">
               {[1, 2, 3, 4, 5, 6].map((num, index) => (

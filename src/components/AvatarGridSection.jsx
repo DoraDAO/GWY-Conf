@@ -93,10 +93,10 @@ const AvatarGridSection = () => {
           }}
         >
           <h2 className="avatar-headline">
-            You will find yourself among us
+            Built with the community
           </h2>
           <p className="avatar-subtext">
-            dive into a dynamic community where artists and buyers seamlessly merge
+            GirlsWhoYap is powered by ambassadors and contributors across regions who believe in creating safe, inclusive, and high-impact spaces
           </p>
         </motion.div>
 

@@ -232,3 +232,34 @@
     padding: var(--spacing-xl);
   }
 }
+
+@media (max-width: 640px) {
+  .ambassador-title {
+    font-size: var(--text-3xl);
+  }
+
+  .ambassador-subtitle {
+    font-size: var(--text-base);
+  }
+
+  .join-now-btn {
+    padding: 12px 24px;
+    font-size: var(--text-sm);
+  }
+
+  .ambassador-card-title {
+    font-size: var(--text-lg);
+  }
+
+  .ambassador-card-description {
+    font-size: var(--text-xs);
+  }
+
+  .ambassador-cta {
+    padding: var(--spacing-lg);
+  }
+
+  .ambassador-cta-text {
+    font-size: var(--text-sm);
+  }
+}

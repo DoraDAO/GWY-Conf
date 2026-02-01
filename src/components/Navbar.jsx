@@ -10,6 +10,7 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
   const [programOpen, setProgramOpen] = useState(false);
   const [ambassadorOpen, setAmbassadorOpen] = useState(false);
   const [partnerOpen, setPartnerOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navRef = useRef(null);
 
   const handleNavigation = (page, e) => {
@@ -24,6 +25,7 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
     setProgramOpen(false);
     setAmbassadorOpen(false);
     setPartnerOpen(false);
+    setMobileMenuOpen(false); // Close mobile menu on navigation
   };
   useEffect(() => {
     const nav = navRef.current;
@@ -172,7 +174,204 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
             Register
           </a>
         </div>
+        
+        {/* Mobile Hamburger Button */}
+        <button 
+          className="mobile-menu-toggle"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          <span className={`hamburger ${mobileMenuOpen ? 'open' : ''}`}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </button>
       </div>
+
+      {/* Mobile Menu Drawer */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              className="mobile-menu-backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setMobileMenuOpen(false)}
+            />
+            
+            {/* Menu Drawer */}
+            <motion.div
+              className="mobile-menu"
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            >
+              <div className="mobile-menu-header">
+                <span className="mobile-menu-title">Menu</span>
+                <button 
+                  className="mobile-menu-close"
+                  onClick={() => setMobileMenuOpen(false)}
+                  aria-label="Close menu"
+                >
+                  ✕
+                </button>
+              </div>
+              
+              <div className="mobile-menu-content">
+                <a 
+                  href="#about" 
+                  className="mobile-menu-link"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  About
+                </a>
+                
+                {/* Program Dropdown */}
+                <div className="mobile-dropdown">
+                  <button 
+                    className="mobile-dropdown-trigger"
+                    onClick={() => setProgramOpen(!programOpen)}
+                  >
+                    Program <span className={`dropdown-arrow ${programOpen ? 'open' : ''}`}>▾</span>
+                  </button>
+                  <AnimatePresence>
+                    {programOpen && (
+                      <motion.div
+                        className="mobile-dropdown-content"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <a 
+                          href="#bounty" 
+                          className="mobile-dropdown-item"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          Bounty
+                        </a>
+                        <a 
+                          href="#meetups" 
+                          className="mobile-dropdown-item"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          Meetups
+                        </a>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {/* Ambassador Dropdown */}
+                <div className="mobile-dropdown">
+                  <button 
+                    className="mobile-dropdown-trigger"
+                    onClick={() => setAmbassadorOpen(!ambassadorOpen)}
+                  >
+                    Ambassador <span className={`dropdown-arrow ${ambassadorOpen ? 'open' : ''}`}>▾</span>
+                  </button>
+                  <AnimatePresence>
+                    {ambassadorOpen && (
+                      <motion.div
+                        className="mobile-dropdown-content"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <a 
+                          href="#leaderboard" 
+                          className="mobile-dropdown-item"
+                          onClick={(e) => handleNavigation('leaderboard', e)}
+                        >
+                          Leaderboard
+                        </a>
+                        <a 
+                          href="#apply" 
+                          className="mobile-dropdown-item"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          Apply Now
+                        </a>
+                        <a 
+                          href="#ticket" 
+                          className="mobile-dropdown-item"
+                          onClick={(e) => handleNavigation('ticket', e)}
+                        >
+                          Ticket
+                        </a>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {/* Partner Dropdown */}
+                <div className="mobile-dropdown">
+                  <button 
+                    className="mobile-dropdown-trigger"
+                    onClick={() => setPartnerOpen(!partnerOpen)}
+                  >
+                    Partner <span className={`dropdown-arrow ${partnerOpen ? 'open' : ''}`}>▾</span>
+                  </button>
+                  <AnimatePresence>
+                    {partnerOpen && (
+                      <motion.div
+                        className="mobile-dropdown-content"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <a 
+                          href="#community" 
+                          className="mobile-dropdown-item"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          Community
+                        </a>
+                        <a 
+                          href="#media" 
+                          className="mobile-dropdown-item"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          Media
+                        </a>
+                        <a 
+                          href="#sponsors" 
+                          className="mobile-dropdown-item"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          Sponsors
+                        </a>
+                        <a 
+                          href="#institutions" 
+                          className="mobile-dropdown-item"
+                          onClick={(e) => handleNavigation('institutions', e)}
+                        >
+                          Institutions
+                        </a>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                <a 
+                  href="#register" 
+                  className="btn btn-primary mobile-menu-cta"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Register
+                </a>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };
