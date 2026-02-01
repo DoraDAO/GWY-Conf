@@ -125,6 +125,13 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
                   >
                     Apply Now
                   </a>
+                  <a 
+                    href="#ticket" 
+                    className="dropdown-item"
+                    onClick={(e) => handleNavigation('ticket', e)}
+                  >
+                    Ticket
+                  </a>
                 </motion.div>
               )}
             </AnimatePresence>
