@@ -15,7 +15,7 @@ const PartnersSection = () => {
   const [showCursor, setShowCursor] = useState(true);
   const [typingComplete, setTypingComplete] = useState(false);
   
-  const fullText = "Trusted by the best.";
+  const fullText = "Trusted by leading  Organizations and communities";
 
   useEffect(() => {
     if (isInView && currentIndex < fullText.length) {
@@ -76,7 +76,7 @@ const PartnersSection = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
               >
-                Leading institutions and organizations supporting Girls Who Yap.
+                Organizations that believe in community-led growth, open conversations, and inclusive ecosystems
               </motion.p>
             )}
           </AnimatePresence>

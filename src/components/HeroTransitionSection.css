@@ -61,7 +61,7 @@
 .hero-transition-card {
   position: absolute;
   top: 50%;
-  left: 20%;
+  left: 10%;
   width: 220px;
   height: 260px;
   margin-top: -130px;
@@ -85,6 +85,8 @@
   .hero-transition-container {
     grid-template-columns: 1fr;
     gap: var(--spacing-2xl);
+    padding: 0 var(--spacing-2xl);
+    top: 10vh;
   }
 
   .cta-content {
@@ -92,12 +94,20 @@
     align-items: center;
   }
 
+  .cta-content h2 {
+    font-size: clamp(32px, 4.5vw, 48px);
+  }
+
+  .cta-content p {
+    font-size: var(--text-base);
+  }
+
   .cta-content .btn-primary {
     align-self: center;
   }
 
   .hero-transition-cards {
-    height: 500px;
+    height: 450px;
   }
 
   .hero-transition-card {
@@ -110,17 +120,84 @@
 
 @media (max-width: 768px) {
   .hero-transition-section {
-    min-height: 150vh;
+    min-height: 120vh;
+  }
+
+  .hero-transition-container {
+    padding: 0 var(--spacing-lg);
+    top: 5vh;
+    gap: var(--spacing-xl);
+  }
+
+  .cta-content {
+    gap: var(--spacing-md);
+  }
+
+  .cta-content h2 {
+    font-size: clamp(28px, 4vw, 40px);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .cta-content p {
+    font-size: var(--text-sm);
+    margin-bottom: var(--spacing-md);
   }
 
   .hero-transition-cards {
-    height: 400px;
+    height: 350px;
   }
 
   .hero-transition-card {
-    width: 160px;
-    height: 200px;
-    margin-top: -100px;
-    margin-left: -80px;
+    width: 140px;
+    height: 180px;
+    margin-top: -90px;
+    margin-left: -70px;
+    font-size: var(--text-lg);
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-transition-section {
+    min-height: 100vh;
+  }
+
+  .hero-transition-container {
+    padding: 0 var(--spacing-md);
+    top: 0;
+    height: auto;
+    min-height: 80vh;
+    gap: var(--spacing-lg);
+  }
+
+  .cta-content {
+    gap: var(--spacing-sm);
+  }
+
+  .cta-content h2 {
+    font-size: clamp(24px, 6vw, 32px);
+    line-height: 1.15;
+  }
+
+  .cta-content p {
+    font-size: var(--text-xs);
+    line-height: 1.5;
+  }
+
+  .cta-content .btn-primary {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .hero-transition-cards {
+    height: 280px;
+  }
+
+  .hero-transition-card {
+    width: 120px;
+    height: 150px;
+    margin-top: -75px;
+    margin-left: -60px;
+    font-size: var(--text-base);
+    padding: var(--spacing-sm);
   }
 }

@@ -125,28 +125,135 @@
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
+@media (max-width: 1024px) {
+    .featured-speaker-section {
+        min-height: 700px;
+    }
+
+    .featured-speaker-section .container {
+        min-height: 600px;
+    }
+
+    .featured-grid-background {
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--spacing-lg);
+    }
+
+    .featured-avatar-small {
+        min-height: 120px;
+    }
+
+    .featured-center-card {
+        width: 320px;
+        height: 360px;
+        left: 50%;
+    }
+}
+
 @media (max-width: 768px) {
+    .featured-speaker-section {
+        min-height: 600px;
+    }
+
+    .featured-speaker-section .container {
+        min-height: 500px;
+    }
+
     .featured-grid-background {
         grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-md);
+    }
+
+    .featured-avatar-small {
+        min-height: 100px;
     }
 
     .featured-center-card {
         width: 90%;
-        max-width: 380px;
-        height: 520px;
+        max-width: 300px;
+        height: 400px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 
     .featured-like-btn {
         top: 16px;
         right: 16px;
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: 12px;
     }
 
     .featured-username {
         left: 16px;
+        font-size: var(--text-sm);
     }
 
     .featured-speaker-info {
         bottom: 20px;
         left: 16px;
+    }
+
+    .featured-speaker-name {
+        font-size: var(--text-lg);
+    }
+
+    .featured-speaker-from {
+        font-size: var(--text-xs);
+    }
+}
+
+@media (max-width: 640px) {
+    .featured-speaker-section {
+        min-height: 500px;
+        padding: var(--spacing-2xl) 0;
+    }
+
+    .featured-speaker-section .container {
+        min-height: 400px;
+    }
+
+    .featured-grid-background {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-sm);
+        padding: var(--spacing-xl) 0;
+    }
+
+    .featured-avatar-small {
+        min-height: 80px;
+        border-radius: var(--radius-md);
+    }
+
+    .featured-center-card {
+        width: 90%;
+        max-width: 280px;
+        height: 360px;
+        border-radius: 24px;
+    }
+
+    .featured-like-btn {
+        top: 12px;
+        right: 12px;
+        padding: 6px 12px;
+        font-size: 11px;
+    }
+
+    .featured-username {
+        left: 12px;
+        font-size: 12px;
+    }
+
+    .featured-speaker-info {
+        bottom: 16px;
+        left: 12px;
+    }
+
+    .featured-speaker-name {
+        font-size: var(--text-base);
+        margin-bottom: 2px;
+    }
+
+    .featured-speaker-from {
+        font-size: 11px;
     }
 }

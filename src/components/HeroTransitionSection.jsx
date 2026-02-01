@@ -18,18 +18,18 @@ const HeroTransitionSection = () => {
   const textOpacity = useTransform(scroll, [0.1, 0.25], [0, 1]);
   const textY = useTransform(scroll, [0.1, 0.25], [30, 0]);
 
-  const explodeProgress = useTransform(scroll, [0.25, 0.65], [0, 1]);
+  const explodeProgress = useTransform(scroll, [0.2, 0.5], [0, 1]);
 
   const buttonOpacity = useTransform(scroll, [0.2, 0.4], [0, 1]);
   const buttonY = useTransform(scroll, [0.2, 0.4], [20, 0]);
 
   const cards = [
-    { id: 1, color: "#06B6D4", label: "Bounties", x: 100, y: 0, r: -4 },
-    { id: 2, color: "#9333EA", label: "Girls Who Yap", x: 200, y: 0, r: 6 },
-    { id: 3, color: "#FF006E", label: "Doradao", x: 300, y: 0, r: -5 },
-    { id: 4, color: "#F97316", label: "Speaker", x: 400, y: 0, r: 7 },
-    { id: 5, color: "#10B981", label: "Conference", x: 500, y: 0, r: 5 },
-    { id: 6, color: "#3B82F6", label: "Community", x: 250, y: 0, r: -6 }
+    { id: 1, color: "#06B6D4", label: "Bounties", x: 140, y: 0, r: -4 },
+    { id: 2, color: "#9333EA", label: "Girls Who Yap", x: 280, y: 0, r: 6 },
+    { id: 3, color: "#FF006E", label: "Doradao", x: 420, y: 0, r: -5 },
+    { id: 4, color: "#F97316", label: "Speaker", x: 560, y: 0, r: 7 },
+    { id: 5, color: "#10B981", label: "Conference", x: 700, y: 0, r: 5 },
+    { id: 6, color: "#3B82F6", label: "Community", x: 350, y: 0, r: -6 }
   ];
 
   return (
@@ -46,14 +46,15 @@ const HeroTransitionSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
           >
-            Join the Ambassador Program
+            What you’ll experience
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
           >
-            Build, lead and grow with Girls Who Yap.
+           This is not about passive listening, it’s about active participation.
+
           </motion.p>
           <motion.button
             className="btn btn-primary"

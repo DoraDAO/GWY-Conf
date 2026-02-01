@@ -1,5 +1,5 @@
 .sequential-cards-section {
-    background: #F5A962;
+    background: #FFFAFA;
     perspective: 1500px;
     transform-style: preserve-3d;
 }
@@ -114,6 +114,16 @@
 @media (max-width: 1024px) {
     .sequential-container {
         grid-template-columns: 1fr;
+        gap: var(--spacing-2xl);
+    }
+
+    .sequential-left {
+        padding-right: 0;
+        text-align: center;
+    }
+
+    .sequential-thumbnail {
+        margin: 0 auto var(--spacing-lg);
     }
 
     .sequential-right {
@@ -148,5 +158,121 @@
     .sequential-card:nth-child(5) {
         left: 400px;
         top: 120px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sequential-container {
+        gap: var(--spacing-xl);
+    }
+
+    .sequential-headline {
+        font-size: var(--text-3xl);
+    }
+
+    .sequential-right {
+        height: 280px;
+    }
+
+    .sequential-card {
+        width: 140px;
+        height: 180px;
+        padding: var(--spacing-md);
+    }
+
+    .sequential-card:nth-child(1) {
+        left: 0;
+        top: 0;
+    }
+
+    .sequential-card:nth-child(2) {
+        left: 80px;
+        top: 25px;
+    }
+
+    .sequential-card:nth-child(3) {
+        left: 160px;
+        top: 50px;
+    }
+
+    .sequential-card:nth-child(4) {
+        left: 240px;
+        top: 75px;
+    }
+
+    .sequential-card:nth-child(5) {
+        left: 320px;
+        top: 100px;
+    }
+
+    .sequential-card-label {
+        font-size: var(--text-base);
+    }
+
+    .username-pill-sequential {
+        right: 80px;
+    }
+}
+
+@media (max-width: 640px) {
+    .sequential-thumbnail {
+        width: 100px;
+        height: 125px;
+    }
+
+    .sequential-headline {
+        font-size: var(--text-2xl);
+    }
+
+    .sequential-subtitle {
+        font-size: 10px;
+    }
+
+    .sequential-description {
+        font-size: var(--text-sm);
+    }
+
+    .sequential-right {
+        height: 220px;
+    }
+
+    .sequential-card {
+        width: 110px;
+        height: 140px;
+        padding: var(--spacing-sm);
+    }
+
+    .sequential-card:nth-child(1) {
+        left: 0;
+        top: 0;
+    }
+
+    .sequential-card:nth-child(2) {
+        left: 60px;
+        top: 20px;
+    }
+
+    .sequential-card:nth-child(3) {
+        left: 120px;
+        top: 40px;
+    }
+
+    .sequential-card:nth-child(4) {
+        left: 180px;
+        top: 60px;
+    }
+
+    .sequential-card:nth-child(5) {
+        left: 240px;
+        top: 80px;
+    }
+
+    .sequential-card-label {
+        font-size: var(--text-sm);
+    }
+
+    .username-pill-sequential {
+        right: 40px;
+        top: 10px;
     }
 }

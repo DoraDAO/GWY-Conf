@@ -4,7 +4,7 @@
 
 .vision-container {
     display: grid;
-    grid-template-columns: 40% 60%;
+    grid-template-columns: 40% 55% !important;
     gap: var(--spacing-4xl);
     align-items: center;
 }
@@ -48,6 +48,7 @@
     background: var(--color-text-primary);
     border-radius: var(--radius-xl);
     padding: var(--spacing-lg);
+    max-width: 600px;
 }
 
 .vision-tabs {
@@ -99,5 +100,111 @@
 @media (max-width: 1024px) {
     .vision-container {
         grid-template-columns: 1fr;
+        gap: var(--spacing-3xl);
+    }
+
+    .vision-left {
+        padding-right: 0;
+        text-align: center;
+    }
+
+    .vision-icon {
+        font-size: 40px;
+    }
+
+    .vision-headline {
+        font-size: var(--text-4xl);
+    }
+
+    .vision-icons-grid {
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .vision-container {
+        gap: var(--spacing-2xl);
+    }
+
+    .vision-icon {
+        font-size: 36px;
+        margin-bottom: var(--spacing-md);
+    }
+
+    .vision-headline {
+        font-size: var(--text-3xl);
+        margin-bottom: var(--spacing-md);
+    }
+
+    .vision-description {
+        margin-bottom: var(--spacing-xl);
+        font-size: var(--text-sm);
+    }
+
+    .vision-icons-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--spacing-md);
+    }
+
+    .vision-icon-item {
+        font-size: 28px;
+    }
+
+    .vision-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .vision-tab {
+        font-size: var(--text-sm);
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+}
+
+@media (max-width: 640px) {
+    .vision-icon {
+        font-size: 32px;
+    }
+
+    .vision-headline {
+        font-size: var(--text-2xl);
+    }
+
+    .vision-description {
+        font-size: var(--text-xs);
+    }
+
+    .vision-icons-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--spacing-sm);
+        max-width: 240px;
+    }
+
+    .vision-icon-item {
+        font-size: 24px;
+    }
+
+    .vision-card-container {
+        padding: var(--spacing-md);
+    }
+
+    .vision-tabs {
+        gap: var(--spacing-xs);
+        margin-bottom: var(--spacing-md);
+        flex-wrap: wrap;
+    }
+
+    .vision-tab {
+        font-size: 12px;
+        padding: 6px var(--spacing-sm);
+    }
+
+    .vision-create-btn {
+        font-size: 11px;
+        padding: 6px var(--spacing-sm);
+    }
+
+    .vision-cards-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
     }
 }

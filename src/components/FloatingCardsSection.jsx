@@ -62,9 +62,7 @@ const FloatingCardsSection = () => {
             scale: textScale
           }}
         >
-          Whether you're a <span className="highlight-teal">speaker</span>, attendee, or sponsor,{' '}
-          <span className="highlight-orange">Girls Who Yap</span> connects{' '}
-          <span className="text-muted">culture, community, and opportunity.</span>
+          GirlsWhoYap is for people across backgrounds, disciplines, and stages of life. Whether you're a <span className="highlight-teal">student</span>, <span className="highlight-orange">founder</span>, <span className="highlight-teal">creator</span>, <span className="highlight-orange">developer</span>, <span className="highlight-teal">marketer</span>, <span className="highlight-orange">researcher</span>, or simply exploring, you're welcome here.
         </motion.h2>
 
         <div className="floating-cards-stack">

@@ -1,8 +1,8 @@
 :root {
-  --color-bg-primary: #F5A962;
-  --color-bg-secondary: #FDB863;
-  --color-bg-warm: #F5A962;
-  --color-bg-light: #FDD5A7;
+  --color-bg-primary: #FFFAFA;
+  --color-bg-secondary: #FFFAFA;
+  --color-bg-warm: #FFFAFA;
+  --color-bg-light: #FFFAFA;
   --color-bg-dark: #2A2A2A;
   --color-text-primary: #1A1A1A;
   --color-text-secondary: #666666;
@@ -111,19 +111,23 @@ body {
   font-size: var(--text-base);
   font-weight: var(--font-weight-light);
   color: var(--color-text-primary);
-  background: #F5A962;
+  background: #FFFAFA;
   background-attachment: fixed;
   line-height: 1.6;
   overflow-x: hidden;
   cursor: default;
 }
 
-a, button, .btn {
+a,
+button,
+.btn {
   cursor: pointer;
   will-change: transform;
 }
 
-a:hover, button:hover, .btn:hover {
+a:hover,
+button:hover,
+.btn:hover {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -306,6 +310,12 @@ img {
   padding: 0 var(--spacing-3xl);
 }
 
+.container-wide {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-3xl);
+}
+
 .section {
   padding: var(--spacing-4xl) 0;
   position: relative;
@@ -380,6 +390,29 @@ img {
   grid-template-columns: repeat(4, 1fr);
 }
 
+/* Retina Display Support */
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+
+  /* High DPI styles - use 2x images where applicable */
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Large Desktop/Mac Breakpoint (iMac, MacBook Pro 16", large displays) */
+@media (min-width: 1441px) {
+  .container-wide {
+    max-width: 1800px;
+  }
+
+  .section {
+    padding: var(--spacing-5xl) 0;
+  }
+}
+
+/* Tablet and Small Laptops (iPad Pro, small Windows laptops) */
 @media (max-width: 1024px) {
   :root {
     --text-6xl: 48px;
@@ -388,19 +421,32 @@ img {
     --spacing-5xl: 80px;
   }
 
+  .container,
+  .container-wide {
+    padding: 0 var(--spacing-2xl);
+  }
+
   .grid-3,
   .grid-4 {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
+/* Mobile Landscape and Tablets (iPad, phones in landscape) */
 @media (max-width: 768px) {
   :root {
     --text-6xl: 40px;
     --text-5xl: 32px;
     --text-4xl: 28px;
+    --text-3xl: 24px;
     --spacing-5xl: 60px;
     --spacing-4xl: 48px;
+    --spacing-3xl: 40px;
+  }
+
+  .container,
+  .container-wide {
+    padding: 0 var(--spacing-lg);
   }
 
   .grid-2,
@@ -409,7 +455,65 @@ img {
     grid-template-columns: 1fr;
   }
 
-  .container {
-    padding: 0 var(--spacing-lg);
+  .section {
+    padding: var(--spacing-3xl) 0;
+  }
+
+  /* Improve button touch targets for mobile */
+  .btn {
+    min-height: 44px;
+    padding: 14px 28px;
+  }
+}
+
+/* Mobile Portrait (iPhone, Android phones) */
+@media (max-width: 640px) {
+  :root {
+    --text-6xl: 32px;
+    --text-5xl: 28px;
+    --text-4xl: 24px;
+    --text-3xl: 20px;
+    --text-2xl: 18px;
+    --spacing-5xl: 48px;
+    --spacing-4xl: 32px;
+    --spacing-3xl: 24px;
+    --spacing-2xl: 16px;
+  }
+
+  .container,
+  .container-wide {
+    padding: 0 var(--spacing-md);
+    max-width: 100%;
+  }
+
+  .section {
+    padding: var(--spacing-2xl) 0;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 320px;
+    padding: 12px 24px;
+    font-size: var(--text-sm);
+  }
+
+  /* Stack flex items on very small screens */
+  .flex:not(.flex-col) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* Improve readability on small screens */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: 1.2;
+  }
+
+  p {
+    line-height: 1.6;
   }
 }
