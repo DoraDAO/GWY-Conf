@@ -18,18 +18,19 @@ const HeroTransitionSection = () => {
   const textOpacity = useTransform(scroll, [0.1, 0.25], [0, 1]);
   const textY = useTransform(scroll, [0.1, 0.25], [30, 0]);
 
-  const explodeProgress = useTransform(scroll, [0.2, 0.5], [0, 1]);
+  const explodeProgress = useTransform(scroll, [0.1, 0.4], [0, 1]);
 
   const buttonOpacity = useTransform(scroll, [0.2, 0.4], [0, 1]);
   const buttonY = useTransform(scroll, [0.2, 0.4], [20, 0]);
 
+  // Cards flow from top to bottom, moving rightward with open spacing
   const cards = [
-    { id: 1, color: "#06B6D4", label: "Bounties", x: 140, y: 0, r: -4 },
-    { id: 2, color: "#9333EA", label: "Girls Who Yap", x: 280, y: 0, r: 6 },
-    { id: 3, color: "#FF006E", label: "Doradao", x: 420, y: 0, r: -5 },
-    { id: 4, color: "#F97316", label: "Speaker", x: 560, y: 0, r: 7 },
-    { id: 5, color: "#10B981", label: "Conference", x: 700, y: 0, r: 5 },
-    { id: 6, color: "#3B82F6", label: "Community", x: 350, y: 0, r: -6 }
+    { id: 1, color: "#06B6D4", label: "Bounties", x: 100, y: -20, r: -3 },
+    { id: 2, color: "#9333EA", label: "Girls Who Yap", x: 200, y: 40, r: 4 },
+    { id: 3, color: "#FF006E", label: "Doradao", x: 300, y: 100, r: -2 },
+    { id: 4, color: "#F97316", label: "Speaker", x: 400, y: 160, r: 5 },
+    { id: 5, color: "#10B981", label: "Conference", x: 500, y: 220, r: -4 },
+    { id: 6, color: "#3B82F6", label: "Community", x: 600, y: 280, r: 3 }
   ];
 
   return (
@@ -72,6 +73,7 @@ const HeroTransitionSection = () => {
             const x = useTransform(explodeProgress, [0, 1], [0, card.x]);
             const y = useTransform(explodeProgress, [0, 1], [0, card.y]);
             const rotate = useTransform(explodeProgress, [0, 1], [0, card.r]);
+            const cardOpacity = useTransform(scroll, [0, 0.3, 0.5], [0, 0, 1]);
 
             return (
               <motion.div
@@ -82,14 +84,8 @@ const HeroTransitionSection = () => {
                   x,
                   y,
                   rotate,
+                  opacity: cardOpacity,
                   zIndex: 6 - index
-                }}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ 
-                  duration: 0.5, 
-                  delay: 0.1 + (index * 0.1),
-                  ease: [0.4, 0, 0.2, 1]
                 }}
                 whileHover={{ scale: 1.05, rotate: card.r + 5 }}
               >

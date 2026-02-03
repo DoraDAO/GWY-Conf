@@ -96,7 +96,7 @@ const AvatarGridSection = () => {
             Built with the community
           </h2>
           <p className="avatar-subtext">
-            GirlsWhoYap is powered by ambassadors and contributors across regions who believe in creating safe, inclusive, and high-impact spaces
+           Powered by ambassadors creating safe, inclusive spaces.
           </p>
         </motion.div>
 
