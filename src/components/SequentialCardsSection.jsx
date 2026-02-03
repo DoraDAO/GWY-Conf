@@ -106,8 +106,7 @@ const SequentialCardsSection = () => {
             Starting from 7th feb.
           </p>
           <p className="sequential-description">
-            The pre‑conference is designed to help you ease into the main event while forming early connections. Expect smaller sessions, focused discussions, workshops, and community activities that set the tone for the conference ahead.
-            This is where conversations start, and often continue long after the conference ends.
+            Designed to ease you into the conference with focused sessions and early connections.
           </p>
         </div>
 

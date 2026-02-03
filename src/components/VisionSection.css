@@ -30,6 +30,28 @@
     margin-bottom: var(--spacing-3xl);
 }
 
+.vision-learn-btn {
+    background: var(--color-text-primary) !important;
+    color: white !important;
+    border: none !important;
+    padding: var(--spacing-md) var(--spacing-2xl) !important;
+    padding-bottom: var(--spacing-lg) !important;
+    border-radius: var(--radius-md) !important;
+    font-size: var(--text-base) !important;
+    font-weight: var(--font-weight-semibold) !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    margin-top: -20px !important;
+    margin-bottom: var(--spacing-2xl) !important;
+    display: inline-block !important;
+}
+
+.vision-learn-btn:hover {
+    background: var(--color-brand-orange) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15) !important;
+}
+
 .vision-icons-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);

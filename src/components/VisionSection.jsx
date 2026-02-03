@@ -96,12 +96,11 @@ const VisionSection = () => {
             Pre-Conference Experiences
           </h2>
           <p className="vision-description">
-           Before the main conference, we host curated pre-conference sessions designed to go deeper.
-Smaller groups, focused discussions, hands-on learning, and intentional networking — so when the conference begins, connections already exist.
+           Smaller, focused pre-conference sessions to learn, connect, and collaborate.
 
           </p>
 
-          <button className="btn btn-primary">Learn More</button>
+          <button className="vision-learn-btn">Learn More</button>
 
 
           <div ref={iconsRef} className="vision-icons-grid">

@@ -15,7 +15,7 @@ const PartnersSection = () => {
   const [showCursor, setShowCursor] = useState(true);
   const [typingComplete, setTypingComplete] = useState(false);
   
-  const fullText = "Trusted by leading  Organizations and communities";
+  const fullText = "Trusted by organizations worldwide";
 
   useEffect(() => {
     if (isInView && currentIndex < fullText.length) {
