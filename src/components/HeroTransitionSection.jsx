@@ -1,6 +1,12 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import "./HeroTransitionSection.css";
+import img11 from '../../images/11.png';
+import img12 from '../../images/12.png';
+import img13 from '../../images/13.png';
+import img14 from '../../images/14.png';
+import img15 from '../../images/15.png';
+import img16 from '../../images/16.png';
 
 const HeroTransitionSection = () => {
   const sectionRef = useRef(null);
@@ -25,12 +31,12 @@ const HeroTransitionSection = () => {
 
   // Cards flow from top to bottom, moving rightward with open spacing
   const cards = [
-    { id: 1, color: "#06B6D4", label: "Bounties", x: 100, y: -20, r: -3 },
-    { id: 2, color: "#9333EA", label: "Girls Who Yap", x: 200, y: 40, r: 4 },
-    { id: 3, color: "#FF006E", label: "Doradao", x: 300, y: 100, r: -2 },
-    { id: 4, color: "#F97316", label: "Speaker", x: 400, y: 160, r: 5 },
-    { id: 5, color: "#10B981", label: "Conference", x: 500, y: 220, r: -4 },
-    { id: 6, color: "#3B82F6", label: "Community", x: 600, y: 280, r: 3 }
+    { id: 1, image: img12, label: "Bounties", x: 100, y: -20, r: -3 },
+    { id: 2, image: img11, label: "Girls Who Yap", x: 200, y: 40, r: 4 },
+    { id: 3, image: img14, label: "Doradao", x: 300, y: 100, r: -2 },
+    { id: 4, image: img13, label: "Speaker", x: 400, y: 160, r: 5 },
+    { id: 5, image: img15, label: "Conference", x: 500, y: 220, r: -4 },
+    { id: 6, image: img16, label: "Community", x: 600, y: 280, r: 3 }
   ];
 
   return (
@@ -80,7 +86,9 @@ const HeroTransitionSection = () => {
                 key={card.id}
                 className="hero-transition-card"
                 style={{
-                  background: card.color,
+                  backgroundImage: `url(${card.image})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
                   x,
                   y,
                   rotate,

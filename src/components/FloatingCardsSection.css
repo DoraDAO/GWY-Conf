@@ -107,11 +107,12 @@
     transform: translate(-50%, -50%);
     width: 280px;
     height: 360px;
-    border-radius: var(--radius-xl);
+    border-radius: 32px;
     box-shadow: none;
     transform-style: preserve-3d;
     backface-visibility: hidden;
     will-change: transform;
+    overflow: hidden;
 }
 
 .floating-icons {

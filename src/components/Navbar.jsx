@@ -70,7 +70,6 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
             alt="logo" 
             className="navbar-logo-img"
           />
-          <span className="navbar-logo-text">Girls Who Yap</span>
         </a>
         <div className="navbar-menu">
           <a href="#about" className="navbar-link">About</a>
@@ -92,7 +91,13 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
                   transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
                 >
                   <a href="#bounty" className="dropdown-item">Bounty</a>
-                  <a href="#meetups" className="dropdown-item">Meetups</a>
+                  <a 
+                    href="#meetups" 
+                    className="dropdown-item"
+                    onClick={(e) => handleNavigation('meetups', e)}
+                  >
+                    Meetups
+                  </a>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -258,7 +263,7 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
                         <a 
                           href="#meetups" 
                           className="mobile-dropdown-item"
-                          onClick={() => setMobileMenuOpen(false)}
+                          onClick={(e) => handleNavigation('meetups', e)}
                         >
                           Meetups
                         </a>

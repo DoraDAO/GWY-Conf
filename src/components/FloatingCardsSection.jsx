@@ -41,9 +41,9 @@ const FloatingCardsSection = () => {
   const textScale = useTransform(scrollYProgress, [0.2, 0.4, 0.6], [0.95, 1, 1.05]);
 
   const cards = [
-    { id: 1, color: '#FF006E', x: card1X, y: card1Y, rotateY: card1RotateY, scale: card1Scale, opacity: card1Opacity },
-    { id: 2, color: '#9333EA', x: card2X, y: card2Y, rotateY: card2RotateY, scale: card2Scale, opacity: card2Opacity },
-    { id: 3, color: '#06B6D4', x: card3X, y: card3Y, rotateY: card3RotateY, scale: card3Scale, opacity: card3Opacity },
+    { id: 1, image: '/images/7.png', x: card1X, y: card1Y, rotateY: card1RotateY, scale: card1Scale, opacity: card1Opacity },
+    { id: 2, image: '/images/8.png', x: card2X, y: card2Y, rotateY: card2RotateY, scale: card2Scale, opacity: card2Opacity },
+    { id: 3, image: '/images/9.png', x: card3X, y: card3Y, rotateY: card3RotateY, scale: card3Scale, opacity: card3Opacity },
   ];
 
   const iconComponents = [
@@ -71,7 +71,6 @@ const FloatingCardsSection = () => {
               key={card.id}
               className="floating-card"
               style={{
-                background: card.color,
                 x: card.x,
                 y: card.y,
                 rotateY: card.rotateY,
@@ -79,7 +78,9 @@ const FloatingCardsSection = () => {
                 opacity: card.opacity,
                 zIndex: 3 - index,
               }}
-            />
+            >
+              <img src={card.image} alt={`Card ${card.id}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            </motion.div>
           ))}
         </div>
 

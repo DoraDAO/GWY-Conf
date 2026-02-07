@@ -80,20 +80,12 @@ const EditorialSection = () => {
           whileHover={{ scale: 1.05, rotate: 2, y: -10 }}
         >
           <motion.div 
-            className="editorial-image" 
-            style={{ background: 'linear-gradient(135deg, #FF006E 0%, #9333EA 100%)' }}
+            className="editorial-image"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
           >
-            <motion.div 
-              className="editorial-placeholder-text"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.5, delay: 0.7 }}
-            >
-              Conference Image
-            </motion.div>
+            <img src="/images/image (3).png" alt="GirlsWhoYap Conference" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '32px' }} />
           </motion.div>
         </motion.div>
       </motion.div>

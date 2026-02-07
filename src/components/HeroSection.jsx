@@ -1,6 +1,12 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import './HeroSection.css';
+import img11 from '../../images/11.png';
+import img12 from '../../images/12.png';
+import img13 from '../../images/13.png';
+import img14 from '../../images/14.png';
+import img15 from '../../images/15.png';
+import img16 from '../../images/16.png';
 
 const HeroSection = () => {
   const sectionRef = useRef(null);
@@ -180,12 +186,12 @@ const HeroSection = () => {
   const contentY = useTransform(scrollYProgress, [0.22, 0.27], [50, 0]);
 
   const cards = [
-    { id: 1, color: '#9333EA', label: 'Girls Who Yap', y: card1Y, x: card1X, rotate: card1Rotate, scale: card1Scale, z: 6 },
-    { id: 2, color: '#06B6D4', label: 'Bounties', y: card2Y, x: card2X, rotate: card2Rotate, scale: card2Scale, z: 5 },
-    { id: 3, color: '#F97316', label: 'Speaker', y: card3Y, x: card3X, rotate: card3Rotate, scale: card3Scale, z: 4 },
-    { id: 4, color: '#FF006E', label: 'Doradao', y: card4Y, x: card4X, rotate: card4Rotate, scale: card4Scale, z: 3 },
-    { id: 5, color: '#10B981', label: 'Conference', y: card5Y, x: card5X, rotate: card5Rotate, scale: card5Scale, z: 2 },
-    { id: 6, color: '#3B82F6', label: 'Community', y: card6Y, x: card6X, rotate: card6Rotate, scale: card6Scale, z: 1 },
+    { id: 1, image: img11, label: 'Girls Who Yap', y: card1Y, x: card1X, rotate: card1Rotate, scale: card1Scale, z: 6 },
+    { id: 2, image: img12, label: 'Bounties', y: card2Y, x: card2X, rotate: card2Rotate, scale: card2Scale, z: 5 },
+    { id: 3, image: img13, label: 'Speaker', y: card3Y, x: card3X, rotate: card3Rotate, scale: card3Scale, z: 4 },
+    { id: 4, image: img14, label: 'Doradao', y: card4Y, x: card4X, rotate: card4Rotate, scale: card4Scale, z: 3 },
+    { id: 5, image: img15, label: 'Conference', y: card5Y, x: card5X, rotate: card5Rotate, scale: card5Scale, z: 2 },
+    { id: 6, image: img16, label: 'Community', y: card6Y, x: card6X, rotate: card6Rotate, scale: card6Scale, z: 1 },
   ];
 
   return (
@@ -214,7 +220,9 @@ const HeroSection = () => {
                 y: card.y,
                 rotate: card.rotate,
                 scale: card.scale,
-                background: card.color,
+                backgroundImage: `url(${card.image})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
                 zIndex: card.z,
               }}
             >
