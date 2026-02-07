@@ -1,45 +1,64 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
+import * as XLSX from 'xlsx';
 import './LeaderboardSection.css';
 
 const LeaderboardPage = () => {
   const pageRef = useRef(null);
-  const [totalAmbassadors] = useState(5);
+  const [leaderboardData, setLeaderboardData] = useState([]);
+  const [totalAmbassadors, setTotalAmbassadors] = useState(0);
   const [year] = useState(new Date().getFullYear());
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // sample data
-  const leaderboardData = [
-    {
-      position: 1,
-      name: "Ambassador 1",
-      points: 2450
-    },
-    {
-      position: 2,
-      name: "Ambassador 2", 
-      points: 2180
-    },
-    {
-      position: 3,
-      name: "Ambassador 3",
-      points: 1950
-    },
-    {
-      position: 4,
-      name: "Ambassador 4",
-      points: 1820
-    },
-    {
-      position: 5,
-      name: "Ambassador 5",
-      points: 1650
-    }
-  ];
+  // Fetch and parse Excel data
+  useEffect(() => {
+    const fetchExcelData = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('/Excel/Leaderboard_50_Entries.xlsx');
+        
+        if (!response.ok) {
+          throw new Error('Failed to load Excel file');
+        }
+
+        const arrayBuffer = await response.arrayBuffer();
+        const workbook = XLSX.read(arrayBuffer, { type: 'array' });
+        
+        // Get the first sheet
+        const sheetName = workbook.SheetNames[0];
+        const worksheet = workbook.Sheets[sheetName];
+        
+        // Convert to JSON
+        const jsonData = XLSX.utils.sheet_to_json(worksheet);
+        
+        // Transform and get top 10
+        const transformedData = jsonData
+          .map((row, index) => ({
+            position: row.Position || index + 1,
+            name: row.Name || row.Ambassador || `Ambassador ${index + 1}`,
+            points: row.Points || row.Score || 0
+          }))
+          .slice(0, 10); // Get only top 10
+        
+        setLeaderboardData(transformedData);
+        setTotalAmbassadors(jsonData.length);
+        setError(null);
+      } catch (err) {
+        console.error('Error loading Excel data:', err);
+        setError('Failed to load leaderboard data');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchExcelData();
+  }, []);
 
   useEffect(() => {
     const page = pageRef.current;
-    if (!page) return;
+    if (!page || loading || leaderboardData.length === 0) return;
 
     gsap.fromTo(page,
       { opacity: 0, y: 30 },
@@ -63,7 +82,7 @@ const LeaderboardPage = () => {
         delay: 0.3
       }
     );
-  }, []);
+  }, [loading, leaderboardData]);
 
   const getRankIcon = (position) => {
     switch(position) {
@@ -102,6 +121,31 @@ const LeaderboardPage = () => {
       default: return 'rank-default';
     }
   };
+
+  if (loading) {
+    return (
+      <div className="leaderboard-section">
+        <div className="container">
+          <div style={{ textAlign: 'center', padding: '4rem 0', color: 'var(--color-text)' }}>
+            <h2>Loading leaderboard...</h2>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="leaderboard-section">
+        <div className="container">
+          <div style={{ textAlign: 'center', padding: '4rem 0', color: 'var(--color-text)' }}>
+            <h2>Error: {error}</h2>
+            <p>Please make sure the Excel file exists in the /Excel folder.</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div ref={pageRef} className="leaderboard-section">

@@ -19,6 +19,7 @@ import MarketplaceSection from './components/MarketplaceSection';
 import LeaderboardPage from './components/LeaderboardPage';
 import InstitutionsPage from './components/InstitutionsPage';
 import TicketBoothSection from './components/TicketBoothSection';
+import EventSection from './components/EventSection';
 import Footer from './components/Footer';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -54,6 +55,8 @@ function App() {
         setCurrentPage('institutions');
       } else if (hash === 'ticket') {
         setCurrentPage('ticket');
+      } else if (hash === 'meetups') {
+        setCurrentPage('meetups');
       } else {
         setCurrentPage('home');
       }
@@ -76,6 +79,8 @@ function App() {
       return <InstitutionsPage />;
     } else if (currentPage === 'ticket') {
       return <TicketBoothSection />;
+    } else if (currentPage === 'meetups') {
+      return <EventSection />;
     }
     
     return (

@@ -32,12 +32,13 @@
     width: 100%;
     max-width: 900px;
     height: 600px;
-    border-radius: var(--radius-xl);
+    border-radius: 32px;
     box-shadow: var(--shadow-lg);
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
 .editorial-placeholder-text {

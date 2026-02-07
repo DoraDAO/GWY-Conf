@@ -8,13 +8,15 @@
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     z-index: var(--z-sticky);
-    padding: var(--spacing-md) 0;
+    padding: 4px 0;
 }
 
 .navbar-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .navbar-logo {
